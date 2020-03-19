@@ -1,0 +1,1848 @@
+body,h1,h2,h3,h4,h5,h6,p,label,button,a,input,select,textarea{
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.quantumIntro {
+    color: #ffffff;
+    text-align: center;
+}
+.quantumIntro span {
+    display: block;
+    font-size: 18px;
+    margin-top: 20px;
+}
+.quantumIntro p {
+	font-size: 20px;
+	margin-top: 18px;
+}
+.loginForm {
+    background: rgba(51, 51, 51, 0.5);
+    color: #fff;
+    display: inline-block;
+    max-width: 345px;
+	text-align:center;
+	border-radius: 5px;
+}
+.loginForm .input-group {
+	margin-bottom: 30px;
+	text-align:left;
+}
+
+.loginForm label {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 10px;
+}
+.loginForm .form-control {
+	background: none;
+	border-width: 0 0 3px;
+	box-shadow: none;
+	font-size: 18px;
+	padding: 0;
+	height: 22px;
+	width: 100%;
+	border-color: #fff;
+	color: #fff;
+}
+.loginForm a {
+	font-size: 20px;
+    color: #fff;
+}
+.checkbox input[type="checkbox"] {
+  opacity: 0;
+}
+.loginForm .checkbox {
+  display: block;
+  margin: 0;
+  text-align: left;
+}
+.checkbox label::before {
+	border: 2px solid #fff;
+	border-radius: 5px;
+	content: "";
+	display: inline-block;
+	height: 20px;
+	left: 0;
+	position: absolute;
+	transition: border 0.15s ease-in-out 0s, color 0.15s ease-in-out 0s;
+	width: 20px;
+}
+.checkbox input[type="checkbox"]:checked + label::after {
+  content: "\f00c";
+  font-family: "FontAwesome";
+}
+.checkbox label::after {
+	color: #fff;
+	display: inline-block;
+	font-size: 15px;
+	left: 4px;
+	position: absolute;
+	top: -2px;
+}
+.loginForm .checkbox label {
+	line-height: 25px;
+	margin: 0;
+	padding-left: 25px;
+}
+
+.loginForm button {
+	background: #00a2ff;
+	border: medium none;
+	border-radius: 5px;
+	color: #ffffff;
+	font-size: 20px;
+	height: 45px;
+	margin: 25px 0;
+	max-width: 124px;
+	width: 100%;
+}
+/*Leaves add*/
+.AddLeave-Top {
+    padding: 35px 0;
+    border-bottom: 1px solid #c2c2c2;
+}
+.AddLeave-Menu {
+    padding-top: 7px;
+    text-align: right;
+}
+.AddLeave-Top select {
+    max-width: 380px;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    color: #555555;
+    background-color: #ffffff;
+
+}
+.AddLeave-Top select option{
+    padding: 10px 20px;
+}
+.AddLeave-UserInfo {
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 30px 0;
+}
+.AddLeave-UserInfo h4 {
+    color: #000000;
+}
+.fiscal-Year select {
+    font-weight: bold;
+    text-align: center;
+    height: 50px;
+    width: 215px;
+    margin: 15px 0;
+}
+.AddLeaves-Selection-Container {
+    max-width: 1190px;
+    width: 100%;
+    margin: 0 auto;
+}
+.Leaves-Numbering {
+    max-width: 20%;
+    display: inline-block;
+    margin: 50px 26px;
+}
+.Leaves-Numbering select {
+    width: 160px;
+    height: 50px;
+}
+.Leaves-Numbering label {
+    color: #000000;
+}
+.AddLeaves-Selection-Container label {
+    display: block;
+}
+.AddLeave-Button {
+    text-align: center;
+}
+.AddLeave-Button button {
+    max-width: 240px;
+    width: 100%;
+    height: 60px;
+    margin: 20px 5px;
+    font-size: 22px;
+}
+.InfoAbout-AddLeave {
+    text-align: center;
+    padding: 30px 0;
+}
+.InfoAbout-AddLeave p {
+    display: inline-block;
+}
+.imageBox
+{
+    position: relative;
+    height: 400px;
+    width: 400px;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}
+.container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 0;
+    bottom: 0;
+}
+.action {
+    width: 400px;
+    height: 30px;
+    margin: 10px 0;
+}
+.cropped > img {
+    margin-right: 10px;
+}
+
+
+/*END*/
+@media (min-width: 768px) {
+	.loginForm{
+		padding: 30px;
+	}
+	.v-align{
+		float:none!important;
+		display:inline-block;
+		margin-right:-4px;
+		vertical-align:middle;
+		text-align: center;
+	}
+}
+@media (min-width: 990px) {
+	.login-page {
+	  left: 50%;
+	  position: absolute;
+	  top: 50%;
+	  transform: translate(-50%, -50%);
+	  -webkit-transform: translate(-50%, -50%);
+	  width: 100%;
+	}
+}
+@media (max-width: 989px) {
+	.login-page{
+		text-align:center;
+	}
+	.loginForm,.quantumIntro{
+		margin-top:30px;
+	}
+}
+@media (max-width: 767px) {
+	.loginForm{
+		padding: 20px;
+	}
+}
+.container {
+    max-width: 1230px;
+    width: 100%;
+    margin: 0 auto;
+}
+header{
+    background: #f3f3f3;
+    padding: 10px 0;
+}
+.logo img {
+    max-width: 273px;
+    width: 100%;
+    min-width: 200px;
+    position: absolute;
+    top: 15px;
+}
+.settingIcon {
+    text-align: right;
+    padding: 20px 20px;
+}
+.settingIcon span{
+    float: right;
+    color: #176791;
+    font-size: 30px;
+    margin: 0 20px;
+}
+.leftMenuBar {
+    background: #353535;
+    color: #fff;
+    height: 400px;
+    text-align: center;
+    padding: 0;
+}
+.leftMenuBar img{
+    margin: 20px 0;
+}
+.leftMenuBar ul{
+    padding: 0;
+    margin: 0;
+}
+.leftMenuBar ul li{
+    list-style: none;
+    margin: 15px 0;
+    border-left: 4px solid #353535;
+    float: left;
+    width: 100%;
+}
+.leftMenuBar ul li:hover{
+    border-left: 4px solid #176791;
+}
+.borderActive{
+    border-left: 4px solid #176791;
+}
+.leftMenuBar ul li a{
+    text-decoration: none;
+    color: #fff;
+    float: left;
+    width: 100%;
+}
+.dropDbutton{
+    text-align: right
+}
+.dropDbutton select{
+    max-width: 370px;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 10px;
+}
+.dropdown-menu {
+    right: 15px;
+}
+.content {
+    color: #555555;
+    padding:0 50px;
+}
+.content h2{
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+.content table{
+    margin: 0;
+}
+.content table tr th{
+    background: #e5e5e5;
+    color: #000;
+}
+.content table tr td{
+    background: #fcfcfc;
+    text-align:center;
+}
+.calender {
+    background: #fafafa;
+    padding: 20px 0 5px 0;
+    border-top: 1px solid #000;
+}
+.input-group, .input-group input {
+
+    height: 50px;
+    font-size: 18px;
+    border-radius: 0;
+}
+.EmployeeDropdown {
+    background: none;
+    height: 50px;
+    color: #000000;
+    text-align: right;
+}
+.dropdown-menu{
+    right: 15px;
+}
+.leftWiget{
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    background: #353535;
+    z-index: -1;
+}
+@media (max-width: 1024px) {
+    .leftMenuBar{
+        height: auto;
+        background: #353535;
+        width: 100%;
+    }
+    .leftMenuBar ul{
+        float: left;
+        width: 100%;
+        margin: 0;
+    }
+    .leftMenuBar ul li{
+        display: inline-block;
+        text-align: center;
+        border:none;
+        width:33%;
+        margin: 0;
+        height: 110px;
+    }
+    .leftMenuBar ul li:hover{
+        border-bottom: 4px solid #176791;
+        border-left: hidden;
+    }
+    .borderActive{
+        border-bottom: 4px solid #176791;
+        border-left: hidden;
+    }
+    .leftWiget{
+        display: none;
+    }
+}
+@media (max-width: 787px) {
+    .settingIcon a span{
+        margin: 5px;
+        font-size: 20px;
+    }
+    .logo img {
+        margin: 10px 0;
+    }
+}
+
+.login-page {
+    background-image: url("../../assets/Images/background.png");
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
+}
+.leavespagesH {
+     padding:  20px 0;
+ }
+ .RemainingLeaves {
+     background-color: #fafafa;
+     text-align: center;
+     border-top: 1px solid #c2c2c2;
+     padding: 35px 0 0;
+    color: #555555;
+ }
+ .RemainingLeaves h2 {
+     padding-top: 10px;
+     padding-bottom: 10px;
+ }
+ .RemainingLeavesH {
+     padding-bottom: 30px;
+ }
+ .RemainingLeaves span {
+     font-size: 18px;
+     color: #42abe3;
+     padding: 0 10px;
+ }
+ .LeavesNumbering {
+     background-color: #fafafa;
+ }
+ .LeaveapplicationContainer{
+     max-width: 1075px;
+     width: 100%;
+     margin: 0 auto;
+ }
+ .leaveApp {
+     background-color: #f7f7f7;
+ }
+.leaveApp,.appPopHeader{
+     border-radius:10px 10px 0 0;
+ }
+.leavePopupForm {
+    background-color: #ffffff;
+    padding: 0;
+    color: #555555;
+}
+.leavePopupForm label{
+    padding-bottom: 10px;
+}
+.inputSection label{
+    display: block;
+}
+.leavePopupForm h2 {
+    padding: 20px 0;
+    border-bottom: 1px solid #c2c2c2;
+    margin: 30px 0;
+}
+.inputSection {
+    margin-bottom:30px;
+}
+.LeaveTypeInfo {
+    padding-left: 0;
+    padding-right: 0
+}
+.LeaveTypeInfo img {
+    float: left;
+}
+.LeaveTypeInfoIcon {
+    display: inline-block;
+}
+.LeaveTypeInfotext {
+    display: inline-block;
+}
+.LeaveTypeCalender {
+    padding:0;
+}
+.LeaveTypeCalender, form-group{
+    margin: 0;
+}
+.LeaveTypePopUpButton{
+    float: right;
+}
+.LeaveTypePopUpButton :hover{
+    color: #ffffff;
+}
+.LeaveTypePopUpButton button {
+    margin-top: 20px;
+    background-color: #bfbfbf;
+    color: #ffffff;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+}
+ .LeaveTypePopUpButton .active {
+     background-color: #00aff0;
+ }
+ .LAtop {
+    padding: 35px 0;
+    border-bottom: 1px solid #c2c2c2;
+}
+.LAtopMenu {
+    padding-top: 0;
+    text-align: right;
+}
+.LAtop select {
+    max-width: 370px;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #eeeeee;
+    color: #555555;
+    background-color: #ffffff;
+
+}
+.LAtop select option{
+    padding: 10px 20px;
+}
+.LAcontent table{
+    margin: 30px 0;
+}
+.LAcontent table tr th{
+    background: #e5e5e5;
+    color: #555555;
+    padding: 12px 25px 12px 25px;
+}
+.LAcontent table tr td{
+    background: #fcfcfc;
+    padding: 15px 20px 15px 30px;
+    color: #4a4a4a;
+}
+.LAcontent table tr td:nth-child(6) {
+    font-weight: bold;
+}
+.padding {
+    color: #fe8f00;
+}
+.accepted {
+    color: #83c522;
+}
+.rejected {
+    background: #dd1717;
+}
+.rejectedStatus{
+    background:#fff;
+}
+.acceptedStatus{
+    background:#83c522;
+}
+.modal-dialog{
+    max-width:800px;
+    width:100%;
+}
+.LeaveApplication-PopUp {
+    background-color: #fff!important;
+}
+ .appPopHeader {
+     background-color: #353535;
+     text-align: center;
+     color: #fff;
+     padding: 20px 20px;
+ }
+.appPopHeader h3 {
+    display: inline;
+}
+ .appPopHeader img {
+     float: right;
+     cursor: pointer;
+ }
+ .AppPopUpContent {
+     overflow: hidden;
+     width: 100%;
+     background-color: #f7f7f7;
+ }
+ .leaveApp {
+     background-color: #f7f7f7;
+ }
+ .userInfo {
+     float: left;
+     width: 100%;
+     padding: 30px 40px;
+ }
+.EmployeeInfo{
+    float: left;
+}
+.EmployeeInfo h4{
+
+}
+.EmployeeInfo label{
+    margin-bottom: 10px;
+    color: #9d9d9d;
+    font-weight: 400;
+}
+.userDP {
+    float: left;
+}
+.userDP img {
+    margin-right: 20px;
+    width: 300px;
+}
+.leaveAppCalender {
+    float: right;
+}
+
+.LeaveTypeCalender {
+    padding: 0;
+}
+.LAPopUp-bottomSec span, p {
+    color: #888;
+    font-size: 13px;
+}
+.LAPopUp-bottomSec {
+    padding: 40px 40px;
+}
+.LA-LeaveType-PopUp label{
+    padding: 0 10px 40px 0;
+}
+.LA-PopUp-Dates label {
+    padding: 0 10px 40px 0;
+}
+.LA-PopUp-Dates span {
+    padding-right: 10px
+}
+.LA-PopupFromdate {
+    width: 30%;
+}
+.LA-Popuptilldate{
+    width: 70%;
+}
+.LAPopUp-TillDate label {
+    padding: 0 10px 0 55px;
+}
+.LAPopUp-Buttons {
+    text-align: center;
+    padding: 20px 0 90px 0;
+}
+.LAPopUp-Buttons button {
+    max-width: 195px;
+    width: 100%;
+    min-width: 200px;
+    margin: 5px 0;
+}
+@media (max-width: 768px){
+    .La-PopUp-Reason {
+            width: 30%;
+            float: left;
+        }
+    .LA-Reason-p {
+        width: 70%;
+        float: left;
+    }
+}
+.LAtop h2{
+    margin:0;
+}
+
+/*region attendance admin page*/
+h1, h2, h3, h4, h5, label, span {
+    margin: 0;
+}
+body {
+    margin: 0 auto;
+}
+
+select,.selectDropDown {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+     background: url("../../assets/Images/down-arrow-icon.png") white no-repeat 98.5% !important;
+}
+.wfhSelect .selectDropDown {
+    background-size: 15px!important;
+}
+.container {
+    max-width: 1700px;
+    width: 100%;
+    margin: 0 auto;
+}
+header {
+    background-color: #f3f3f3;
+    padding: 10px;
+    box-shadow: 0 0 4px #888888;
+}
+.settingIcon {
+    text-align: right;
+}
+.settingIcon span {
+    font-size: 25px;
+    vertical-align: middle;
+}
+.settingIcon i {
+    margin-left: 5px;
+}
+.settingIcon img{
+    width: 50px;
+    margin: 0 15px 0 35px;
+}
+.AttendanceTop {
+    border-bottom: 1px solid #c2c2c2;
+    overflow: hidden;
+    height: 100px;
+    margin-bottom: 15px;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    background: #fff;
+
+}
+.AttendanceTop h2 {
+    float: left;
+    padding: 30px 0 7px 0;
+}
+.mainAttendanceHeading {
+    position: relative;
+    height: 100%;
+}
+.mainAttendanceHeading h1{
+    font-weight: 600;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    height: 30%;
+}
+.dashboardTop {
+    margin:26px 0 0;
+    text-align:left;
+}
+.AttendancePageTiming {
+    line-height: 100px;
+    text-align: right;
+}
+.AttendancePageTiming span {
+    font-size: 20px;
+     font-size: 20px;
+    vertical-align: middle;
+}
+.AttendancePageTiming span:last-child {
+    color: #00aff0;
+    font-size: 20px;
+    margin-left: 30px;
+}
+.attendancepageBox {
+    border: 1px solid #d6d6d6;
+    margin-bottom: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+}
+.attendanceBoxb-ground {
+    /*background-image: url("../../assets/Images/attendance-background.png");*/
+    min-height: 170px;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+    border-top-right-radius: 5px;
+    background-position:50% 50%;
+}
+
+.colCustom{
+    width:12.5%;
+    float: left;
+    padding:0 15px;
+}
+.attendanceBoxb-ground:after {
+    background-image: -moz-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(255,255,255,0) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(255,255,255,0) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(255,255,255,0) 100%);
+    bottom: 0;
+    content: "";
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+.attendanceBoxb-ground a {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 100%;
+    vertical-align:middle;
+    margin-right: 5px;
+}
+.attendanceBoxb-ground h4 {
+    vertical-align:middle;
+    display: inline-block;
+    color: #fff;
+}
+.attendanceBoxb-ground label {
+    color: #f2f2f2;
+    padding: 0 20px;
+    display: block;
+}
+.attendancebackgroundText {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    padding-left: 5px;
+    width: 100%;
+    z-index: 9;
+}
+.attendanceboxComment {
+    padding: 10px 10px 0;
+}
+.attendanceboxComment p {
+    padding: 0;
+}
+.attendancebox-CheckInTime {
+  /*border-top: 1px solid #f2f2f2;*/
+  font-size: 20px;
+  margin: 0 5px;
+  min-height: 80px;
+  padding: 10px 0;
+  text-align: center;
+}
+.attendanceboxButton {
+    display: flex;
+}
+.attendancebox-CheckInTime span {
+    color: #333;
+}
+.checkoutButton {
+        border-bottom-right-radius: 5px;
+    background-color: #39b113;
+    color: #fff;
+}
+.statusButton {
+    border-bottom-left-radius: 5px;
+    background-color: #afafaf;
+    color: #fff;
+}
+.attendanceboxButton button{
+    border: medium none;
+    font-weight: 600;
+    height: 46px;
+    padding: 0;
+    width: 50%;
+    font-size: 20px;
+}
+/*end region attendance admin page*/
+
+/*region status popup*/
+
+#leaveApp h1, h2, h3, h4, h5, h6, span, label{
+    padding: 0;
+    margin: 0;
+}
+
+.LeaveApplication-PopUp {
+    max-width: 840px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #353535;
+    border-radius:10px;
+}
+.appPopHeader {
+    background-color: #00aff0;
+    text-align: center;
+    color: #fff;
+    padding: 20px 20px;
+}
+.appPopHeader h4 {
+    display: inline;
+}
+.appPopHeader img {
+    float: right;
+    cursor: pointer;
+}
+.AppPopUpContent {
+    overflow: hidden;
+    width: 100%;
+    background-color: #f7f7f7;
+}
+.leaveApp {
+    background-color: #f7f7f7;
+}
+.userInfo {
+    float: left;
+    width: 100%;
+    padding: 40px;
+    background-color: #2a2a2a;
+}
+#SavePopUp-TopSec .userInfo{
+    background-color: #2a2a2a;
+    padding:40px;
+}
+.EmployeeInfo{
+    float: left;
+    text-align: left;
+}
+.EmployeeInfo h4{
+    color: #fff;
+    font-size: 30px;
+}
+.EmployeeInfo label{
+    margin-bottom: 10px;
+    color: #9d9d9d;
+    font-weight: 400;
+    font-size: 18px;
+}
+.userDP {
+    float: left;
+}
+.userDP img {
+    margin-right: 20px;
+}
+/* Status popUp CSS */
+select {
+    appearance:none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    /* Some browsers will not display the caret when using calc, so we put the fallback first */
+   
+}
+.statusPopDropdown {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin: 0 auto;
+  padding: 35px 0;
+  width: 545px;
+}   
+.statusPopDropdown select {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    display: block;
+    margin: 10px 0;
+    font-size: 18px;
+    border: 1px solid #d3d3d3;
+    background:#4e4e4e url(../../assets/Images/down-arrow.png) no-repeat 98% 50%!important;
+    color:#fff;
+    border-radius:10px;
+}
+.statuspopupButton {
+    text-align: center;
+}
+.statuspopupButton button {
+    max-width: 194px;
+    width: 100%;
+    height: 40px;
+    margin: 20px 5px;
+    font-size: 14px;
+    font-weight: 600;
+    background:#00aff0;
+}
+/* Status popUp CSS */
+
+
+
+/*end region status popup*/
+
+
+/* start region New Dashboard CSS  */
+
+.dashboardBox {
+
+}
+line,.angular-gauge text.text-val,.boxBottomarea .angular-gauge path.main-arc {
+    display: none;
+}
+.angular-gauge svg {
+    position: absolute;
+    left: 0;
+    top: -80px;
+}
+.angular-gauge rect.arrow{
+    y: 40;
+    height: 70;
+}
+.dashboardBox .angular-gauge {
+    height: 137px;
+    margin: 0 auto;
+    background: url(../../assets/Images/barometer.png) no-repeat 50% 50%;
+}
+.boxsize {
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  min-height: 382px;
+}
+.sameBoxs .row{
+    margin-bottom:30px;
+}
+.dashboardBoxHeader {
+    background-color: #00aff0;
+    color: #ffffff;
+    padding: 20px;
+    font-size: 26px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.dashboardBoxHeader h3 a {
+    cursor: pointer;
+}
+.thumbprint {
+    text-align: center;
+    padding: 20px 0 5px;
+}
+.attendanceBoxtext {
+    padding: 15px 30px;
+}
+.attendanceBoxtext p {
+    display: inline-block;
+    margin-right: 10px;
+    width: 70%;
+}
+.attendanceBoxtext span {
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+}
+
+.dashboardBoxCheckIn {
+    text-align: center;
+    border-top: 1px solid #f2f2f2;
+    padding: 20px 0;
+    margin: 0 15px;
+}
+.attendanceCheckoutButton {
+    text-align: center;
+}
+.attendanceCheckoutButton button {
+    max-width: 194px;
+    width: 100%;
+    height: 40px;
+    margin: 5px 0 30px 0;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #00aff0;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.informationIcon {
+    text-align: right;
+    padding: 5px 10px;
+}
+.barometer {
+    text-align: center;
+}
+.boxBottomarea {
+
+}
+.barometerImage img {
+    margin-bottom: 10px;
+}
+.barometerTable {
+  margin-top: 20px;
+  max-height: 274px;
+  overflow-y: auto;
+}
+.barometerTable table tr td span, .leavesBoxtable table tr td:nth-child(2n), .leavesBoxtable table tr td:last-child, .dashboardBoxCheckIn, .applicationStatustable table tr td:nth-child(2n), .attendanceBoxtext span {
+    color: #959494;
+}
+.applicationStatustable table tr td:last-child, .barometerTable table tr td:last-child {
+    font-size: 14px;
+    font-weight: 600;
+}
+.barometerImage .table span {
+    display: block;
+}
+.employStatusarea  {
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    margin-bottom: 16px;
+}
+.employeeSearch {
+    position: relative;
+}
+.employeeSearch input {
+    border: none;
+    background-color: #f9f9f9;
+    width: 100%;
+    padding: 10px;
+}
+.employeeSearch i {
+    position: absolute;
+    bottom: 13px;
+    right: 18px;
+    font-size: 17px;
+}
+.employList-scroll {
+    overflow-y: scroll;
+    height: 770px;
+}
+.employeeList ul{
+    padding: 0;
+    margin: 0;
+}
+.employeeList ul li {
+    list-style: none;
+    text-align: left;
+    padding: 13px 10px;
+    width: 100%;
+    position: relative;
+}
+.employeeList ul img {
+    vertical-align: top;
+    max-width: 13%;
+    min-width: 13%;
+    width: 100%
+}
+.employeeList ul li h4 {
+    padding-bottom: 5px;
+}
+.employeeList ul li span{
+    color: #d2d2d2;
+}
+.dotStatus {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background: #000;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 33px;
+}
+.Emp-status-card {
+    text-align: left;
+    display: inline-block;
+    padding: 0 0 0 20px;
+    width: 80%;
+}
+.applicationStatustable table {
+    margin: 0;
+}
+.applicationStatustable .leavesBoxtable {
+    padding: 10px;
+}
+.table thead tr th {
+    padding: 9px 20px;
+}
+.table thead {
+    background-color: #f9f9f9
+}
+.leavesBoxtable .table tbody td, .applicationStatustable .table tbody td {
+    padding: 20px;
+}
+.leavesBoxtable .table tbody tr td:first-child, .applicationStatustable .table tbody tr td:first-child, thead tr th:first-child {
+    font-weight: 600;
+    text-align: left;
+}
+.leavesBoxtable .table tbody tr td:last-child, .applicationStatustable .table tbody tr td:last-child,
+.table thead tr th:last-child {
+    text-align: right;
+}
+.dashboardNotification{
+    margin-bottom:30px
+}
+.dashboardNotificationtable {
+    font-size: 14px;
+    font-weight: 600;
+}
+.notificationTop {
+    padding: 20px 20px;
+}
+.notificationTop label {
+    padding-left: 30px;
+}
+.dashboardNotificationtable table tr td {
+    padding: 10px 0 10px 20px;
+}
+
+/* end region New Dashboard CSS  */
+
+
+/* start WFH popup */
+
+.workfromhomeReasonmargin {
+    margin-bottom: 35px;
+}
+.WFHtextalign {
+    text-align: right;
+}
+.calenderColor {
+    color: #cfcfcf;
+    font-size: 28px;
+}
+.starttimeSec {
+    position: relative;
+}
+.starttimeSec input {
+    border: 1px solid #eeeeee;
+    padding: 10px;
+}
+.starttimeSec i{
+    position: absolute;
+    top: 8px;
+    left: 130px;
+    font-size: 28px;
+    color: #cfcfcf;
+}
+.workfromHomecontent {
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 80px;
+    color: #353535;
+}
+.workfromHomecontent span {
+    text-align: right;
+    font-size: 18px;
+}
+.timelistBorder {
+    border: 1px solid #eeeeee;
+    padding: 10px;
+    max-width: 166px;
+    width: 100%;
+}
+.timelistBorder img {
+    float: right;
+}
+.timingList {
+    max-width: 166px;
+    width: 100%;
+    padding-left: 10px;
+    border-right: 1px solid #eeeeee;
+    border-left: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.timingList ul li {
+    list-style: none;
+}
+.timingListDropdown {
+    height: 205px;
+    overflow-y: scroll;;
+}
+.workfromhomeReasoncontent{
+    width: 74%;
+    margin: 0 auto;
+    color: #353535;
+}
+.workfromhomeReason span{
+    font-size: 18px;
+}
+.workfromhomeReason textarea {
+    padding: 10px;
+    max-width: 620px;
+    height: 131px;
+    width: 100%;
+    border: 1px solid #eeeeee;
+}
+.popupButton {
+    text-align: center;
+}
+.popupButton button {
+    max-width: 194px;
+    width: 100%;
+    height: 40px;
+    margin: 20px 5px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* end WFH popup */
+
+/* work from home page css */
+.WFHbutton button {
+    margin: 45px 0 10px 0;
+    float: right;
+}
+.WFHbutton button,.AttendancePageTiming button {
+    padding: 10px;
+    width: 190px;
+    border-radius: 5px;
+    background-color: #00aff0;
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+}
+.AttendancePageTiming button {
+    vertical-align:middle;
+    margin-right:15px;
+}
+.WFHbutton button img {
+    padding: 0 10px 0 0;
+}
+.leftMenuBar {
+    background: #353535;
+    color: #fff;
+    height: 400px;
+    text-align: center;
+    padding: 0;
+}
+.leftMenuBar img{
+    margin: 20px 0;
+}
+.leftMenuBar ul{
+    padding: 0;
+    margin: 0;
+}
+.leftMenuBar ul li{
+    list-style: none;
+    margin: 15px 0;
+    border-left: 4px solid #353535;
+    float: left;
+    width: 100%;
+}
+.leftMenuBar ul li:hover{
+    border-left: 4px solid #176791;
+}
+.borderActive{
+    border-left: 4px solid #176791;
+}
+.leftMenuBar ul li a{
+    text-decoration: none;
+    color: #fff;
+    float: left;
+    width: 100%;
+}
+.dropdown-menu {
+    right: 15px;
+}
+.content {
+    color: #555555;
+    padding:0 50px;
+}
+.content h2{
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+.content table{
+    margin: 30px 0 70px 0;
+}
+.content table tr th{
+    background: #e5e5e5;
+    color: #000;
+}
+.content table tr td{
+    background: #fcfcfc;
+}
+.calender {
+    background: #fafafa;
+    padding: 20px 0 5px 0;
+    border-top: 1px solid #000;
+}
+.input-group {
+    position: relative;
+}
+.input-group img {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 9;
+}
+.input-group, .input-group input {
+    height: 50px;
+    font-size: 18px;
+    border-radius: 0;
+}
+.EmployeeDropdown {
+    background: none;
+    height: 50px;
+    color: #000000;
+    text-align: right;
+}
+.dropdown-menu{
+    right: 15px;
+}
+
+.leftWiget{
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    background: #353535;
+    z-index: -1;
+}
+
+.approved {
+    color: #81c811;
+}
+.pending {
+    color: #ffb12b;
+}
+.decline{
+    color: #e23737;
+}
+.employDropdownlist select{
+    max-width: 370px;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+}
+.leaveResult, .employDropdownlist {
+    margin-bottom: 15px;
+}
+.leaveResult select{
+    max-width: 230px;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+}
+.compensationSec {
+    text-align: right;
+}
+.compensationSec h2{
+    font-size: 26px;
+    display: inline-block;
+    margin: 0;
+    padding-bottom: 25px;
+}
+.compensationSec span {
+    font-size: 28px;
+    color: #ffa800;
+}
+.compensationSec span:last-child{
+    color: #81c811;
+}
+.content .table-responsive table tr td:nth-child(6) {
+    font-size: 22px;
+    color: #81c811;
+}
+.content .table-responsive table tr td:nth-child(8) {
+    font-size: 22px;
+    color: #81c811;
+}
+.content .table-responsive table tr td:last-child{
+    color: #00aff0;
+}
+.content .table-responsive table tr td:last-child img {
+    padding: 0 5px;
+}
+@media (max-width: 1024px) {
+    .leftMenuBar{
+        height: auto;
+        background: #353535;
+        width: 100%;
+    }
+    .leftMenuBar ul{
+        float: left;
+        width: 100%;
+        margin: 0;
+    }
+    .leftMenuBar ul li{
+        display: inline-block;
+        text-align: center;
+        border:none;
+        width:33%;
+        margin: 0;
+        height: 110px;
+    }
+    .leftMenuBar ul li:hover{
+        border-bottom: 4px solid #176791;
+        border-left: hidden;
+    }
+    .borderActive{
+        border-bottom: 4px solid #176791;
+        border-left: hidden;
+    }
+    .leftWiget{
+        display: none;
+    }
+}
+@media (max-width: 787px) {
+    .settingIcon a span{
+        margin: 5px;
+        font-size: 20px;
+    }
+    .logo img {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    }
+}
+
+/* end work from home page css */
+
+
+
+/*Region Employee Registration*/
+#uploadFile {
+    visibility: hidden;
+    position: absolute;
+    left: -999px;
+}
+
+.uploadImgSec {
+    margin: 80px 0 150px 0;
+}
+.displayemployeeImg {
+    position: relative;
+}
+.employeeImageArea {
+    max-width: 257px;
+    width: 100%;
+    min-width: 150px;
+    height: 250px;
+    background-color: #f2f2f2;
+    position: absolute;
+    right: 80px;
+    top: -55px;
+
+}
+.imgUpLoadButton {
+    overflow: hidden;
+}
+.imgUpLoadButton label {
+    display: block;
+}
+.imgUpLoadButton input {
+    max-width: 250px;
+    width: 100%;
+    height: 60px;
+    border: 1px solid #c2c2c2;
+    border-right: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.imgUpLoadButton button {
+    width: 150px;
+    height: 60px;
+    color: #353535;
+    background-color: #f2f2f2;
+    font-size: 18px;
+    border: none;
+}
+.regEmployeePage {
+    padding: 20px 0 5px 0;
+    border-top: 1px solid #c2c2c2;
+}
+.regEmployeeContent {
+    max-width: 1020px;
+    width: 100%;
+    margin: 0 auto;
+}
+.content h2 {
+    font-size: 26px;
+    margin: 50px 0 10px 0;
+}
+.credentialSec, .dateofBirthSec{
+    padding-bottom: 40px;
+}
+.credentialSec input,.dateofBirthSec input, .reportingSec select, .joiningSec input {
+    max-width: 525px;
+    width: 100%;
+    height: 65px;
+    padding: 10px;
+    border: 1px solid #c2c2c2;
+    font-size: 20px;
+}
+.credentialSec label, .reportingSec label, .joiningSec label, .dateofBirthSec label {
+    font-size: 18px;
+    display: block;
+}
+.dateofBirthSec, .joiningSec {
+    position: relative;
+}
+.dateofBirthSec span, .joiningSec span {
+    position: absolute;
+    top: 40px;
+    right: 25px;
+}
+.reportingSec {
+
+}
+.regButton button{
+    color: white;
+    background-color: #00aff0;
+    max-width: 525px;
+    width: 100%;
+    height: 110px;
+    border:none;
+    font-size: 28px;
+}
+
+/*End Region Employee Registration*/
+#SavePopUp-TopSec .modal-dialog,#PopUp-TopSec .modal-dialog {
+  left: 50%;
+  max-width: 840px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  padding:0;
+  border-radius:10px;
+}
+#SavePopUp-TopSec .LeaveApplication-PopUp,#PopUp-TopSec .modal-dialog {
+  box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.7);
+}
+
+/*Start Approve and Reject WFH Popup and Leave Approve and Reject PopUp*/
+
+.WFHappReqStatusButton {
+    text-align: right;
+    padding: 20px 0;
+}
+.WFHappReqStatusButton button {
+    padding: 5px 20px;
+    background-color: #ffb12b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+ .WFHRequestBottomArea {
+     max-width: 700px;
+     width: 100%;
+     margin: 50px auto 0 auto;
+     color: #353535;
+     font-size: 18px;
+ }
+.WHFdayandDate date {
+    padding-left: 5px;
+}
+.WFMrequestReason p, .WFMrequeststartTime span:nth-child(2) {
+    font-size: 18px;
+    font-weight: 600;
+    color: #353535;
+}
+.WFMrequeststartTime span {
+    display: block;
+}
+.WHFdayandDate, .WFMrequeststartTime, .WFMrequestReason, .WFMrequest-HoursStatus, .WFHPopUpaddCompensation {
+    margin-bottom: 50px;
+}
+.WFMrequest-HoursStatus label {
+    margin-right: 50px;
+}
+.WFMrequest-HoursStatus select, .WFHPopUpaddCompensation select {
+    max-width: 155px;
+    width: 100%;
+    height: 50px;
+    margin-right: 50px;
+    border: 1px solid #eeeeee;
+    padding: 8px;
+}
+    
+
+.WFHPopUpaddCompensation select{
+    margin-left: 20px;
+}
+.WFMRequestPopUpReason textarea {
+    max-width: 630px;
+    width: 100%;
+    height: 130px;
+    border: 1px solid #eeeeee;
+}
+
+/*End  Approve and Reject WFH Popup and Leave Approve and Reject PopUp*/
+
+
+/**Add Employee POPUP CSS Start**/
+.EMSpopUpHeaderMargin {
+    margin-bottom: 45px;
+}
+.addEmployeePopUp {
+    margin: 25px auto;
+    max-width: 390px;
+    width: 100%;
+}
+.EMSPopupInputfirstBox {
+    color: #353535;
+    margin: 25px 0
+}
+.EMSPopupInputfirstBox span, .EMSPopupInput2ndBox span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.EMSPopupInputfirstBox input, .EMSPopupInput2ndBox select, .EMSPopupInput2ndBox input {
+    border: 1px solid #eeeeee;
+    padding: 10px;
+    max-width: 375px;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+}
+.EMSPopupInput2ndBox {
+    position: relative;
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+}
+.EMSPopupInput2ndBox a {
+    position: absolute;
+    top: 35px;
+    left: 390px;
+
+}
+
+/**Add Employee POPUP CSS End**/
+
+.ACPopUpSelector select {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+}
+.leaveCorrectionPopUpReason textarea{
+        max-width: 650px;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+/*End  Approve and Reject WFH Popup and Leave Approve and Reject PopUp*/
+
+/*REIMBURSEMENT css Start*/
+
+.Reimbursementdropdown  {
+    text-align: right;
+    padding-top: 30px;
+    padding-bottom: 5px
+}
+.Reimbursementdropdown img {
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+}
+.Reimbursementdropdown button{
+    background-color: #00aff0;
+    color: #fff;
+    max-width: 195px;
+    width: 100%;
+    height: 45px;
+    text-align: left;
+    font-weight: 600;
+}
+.Reimbursementdropdown .btn.focus, .Reimbursementdropdown .btn:focus, .Reimbursementdropdown .btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.Reimbursementdropdown ul{
+    left: 358px;
+    margin: 0;
+    border-radius: 0;
+    border-color: #f0f0f0;
+}
+.EMSSearchBar {
+    text-align: right;
+}
+.ReimbursementDropDown select{
+    background-color: #00aff0;
+    border: none;
+}
+.EMSSearchBar input {
+    border: 1px solid #eeeeee;
+    max-width: 370px;
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 18px;
+}
+.EMSSearchBar img {
+    text-align: right;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+.ReimbursementTable table tbody tr td:nth-child(5) {
+    font-weight: 600;
+}
+.permanent{
+    color: #81c811;
+}
+.contract{
+    color: #e23737
+}
+.freelance {
+    color: #2ba8ff
+}
+.probation {
+    color: #ffb12b
+}
+/*REIMBURSEMENT css End*/
+
+/**EmployDetails page CSS Start**/
+.EMSSearchBar {
+    text-align: right;
+}
+.EMSSearchBar input {
+    border: 1px solid #eeeeee;
+    max-width: 370px;
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 18px;
+}
+.EMSSearchBar i {
+    position: absolute;
+    bottom: 13px;
+    right: 18px;
+    font-size: 17px;
+}
+.EmployDetailsContent {
+    color: #555555;
+    padding:0 50px;
+}
+.EmployDetailsContent h2{
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+.EmployDetailsContent table{
+    margin: 30px 0 70px 0;
+}
+.EmployDetailsContent table tr th{
+    background: #e5e5e5;
+    color: #000;
+}
+.EmployDetailsContent table tr td{
+    background: #fcfcfc;
+}
+.EmployDetailsContent .table-responsive table tr td:last-child img {
+    padding: 0 5px;
+}
+/**EmployDetails page CSS End**/
+
+
+
+.selectedTeam{
+	border:solid #4CAF50 1px;
+	float:left; 
+	margin:2px;
+	padding:2px 15px;
+}
+ 
+.selectedTeam a{
+	cursor:pointer;
+	font-weight:bold;
+}

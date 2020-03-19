@@ -1,0 +1,63 @@
+﻿<div class="loginPage">
+    <div class="loader" [ngClass]="Loader ? '':'hidden'">
+        <!---->
+        <div class="circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="../../assets/Images/sitelogo.png" alt="Site Logo">
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">“We are trying to provide best and easiest way to manage employees with their own
+                clicks”</p>
+            <div *ngIf="!showResetPwd">
+                <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                    <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                        <input class="form-control" placeholder="Username" type="text" name="username"
+                            [(ngModel)]="UserName" #username="ngModel" required>
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+
+                    <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                        <input class="form-control" placeholder="Password" type="password" name="password"
+                            [(ngModel)]="Password" #password="ngModel" required>
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+
+                    <div class="row">
+                        <div class="col-xs-8 text-left">
+                            <a (click)="showResetPwd=true">Forgot Password?</a>
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                    </div>
+                    <div class="error-message">{{errMsg}}</div>
+                </form>
+            </div>
+            <div *ngIf="showResetPwd">
+                <label>Email</label>
+                <input class="form-control" type="text" [(ngModel)]="Email" (focus)="OnChangeEmail()">
+                <div class="help-block error-message">{{invalidEmailErrorMsg}}</div>
+                <button class="btn btn-primary btn-block" (click)="ResetPassword()">Reset</button>
+                <button class="btn btn-primary btn-block" (click)="LoginPage()">Back</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,7 @@
+.table tbody tr td:last-child {
+    cursor: pointer;
+}
+
+.modal {
+    overflow-y: auto;
+}

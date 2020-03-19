@@ -1,0 +1,143 @@
+﻿<div class="content-header">
+    <div class="clearfix">
+        <div class="col-sm-6">
+            <h1>Reimbursement</h1>
+        </div>
+        <div class="com-sm-6 text-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default">Action</button>
+                <button style="height:34px;" type="button" class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Medical</a></li>
+                    <li><a href="#">Late Sitting</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="dd-mm-yyyy" aria-describedby="from-date"
+                    [(ngModel)]="FromDate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker
+                    #dpfrom="bsDatepicker" placement="bottom left">
+                <!--<div *ngIf="showFromDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                    <datepicker [(ngModel)]="FromDate" [showWeeks]="true" (ngModelChange)="onStartDateChange()" (selectionDone)="showFromDatePicker = false;"></datepicker>
+                </div>-->
+                <span class="input-group-addon" (click)="dpfrom.toggle()" [attr.aria-expanded]="dpfrom.isOpen"><span
+                        class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="dd-mm-yyyy" aria-describedby="to-date"
+                    [(ngModel)]="FromDate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker
+                    #dpto="bsDatepicker" placement="bottom left">
+                <!--<div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                    <datepicker [(ngModel)]="ToDate" [showWeeks]="true" (ngModelChange)="onEndDateChange()" (selectionDone)="showToDatePicker = false;"></datepicker>
+                </div>-->
+                <span class="input-group-addon" (click)="dpto.toggle()" [attr.aria-expanded]="dpto.isOpen"><span
+                        class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control">
+                <option>Permanent</option>
+                <option>Probation</option>
+                <option>Contract</option>
+                <option>Freelance</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control">
+                <option value="">Choose Employee</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="box">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Ticket No.</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>XYZZZ</td>
+                        <td>13/06/2017</td>
+                        <td>Medical</td>
+                        <td>12314</td>
+                        <td>Decline</td>
+                        <td>GR-433</td>
+                        <td>Medical bill of July 2017</td>
+                        <td><a href="#"><img src="../../assets/Images/right-arrow.png"></a> </td>
+
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>XYZZZ</td>
+                        <td>13/06/2017</td>
+                        <td>General</td>
+                        <td>1234</td>
+                        <td>Paid</td>
+                        <td>GR-433</td>
+                        <td>Bought Register</td>
+                        <td><a href="#"><img src="../../assets/Images/right-arrow.png"></a> </td>
+
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>XYZZZ</td>
+                        <td>13/06/2017</td>
+                        <td>Late Siting</td>
+                        <td>1234</td>
+                        <td>Decline</td>
+                        <td>GR-432</td>
+                        <td>Late sitting SP team</td>
+                        <td><a href="#"><img src="../../assets/Images/right-arrow.png"></a> </td>
+
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>XYZZZ</td>
+                        <td>13/06/2017</td>
+                        <td>Medical</td>
+                        <td>1234</td>
+                        <td>Decline</td>
+                        <td>GR-432</td>
+                        <td>Bought Keyboard</td>
+                        <td><a href="#"><img src="../../assets/Images/right-arrow.png"></a> </td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>XYZZZ</td>
+                        <td>13/06/2017</td>
+                        <td>Medical</td>
+                        <td>1234</td>
+                        <td>Pending</td>
+                        <td>GR-432</td>
+                        <td>Bought Keyboard</td>
+                        <td><a href="#"><img src="../../assets/Images/right-arrow.png"></a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

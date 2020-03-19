@@ -1,0 +1,1189 @@
+﻿/* body {
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Montserrat', sans-serif;
+} */
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?j6hirl');
+    src: url('../fonts/icomoon.eot?j6hirl#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?j6hirl') format('truetype'), url('../fonts/icomoon.woff?j6hirl') format('woff'), url('../fonts/icomoon.svg?j6hirl#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: middle;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+html, body {
+    height: 100%;
+    font-size: 100%;    
+}
+
+i.fas {font-size: 20px;min-width: 22px;}
+.top-profile.open .dropdown-menu.profile-menu {
+display: block !important;
+}
+.skin-purple {height:100%;}
+.icon-Dashboard:before {
+    content: "\e901";
+}
+
+.icon-Employees2:before {
+    content: "\e903";
+}
+
+.icon-leave-list:before {
+    content: "\e904";
+}
+
+.icon-thumb-scan:before {
+    content: "\e905";
+}
+
+.icon-work-from-home:before {
+    content: "\e906";
+}
+
+img {
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -o-crisp-edges; /* Opera */
+    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+}
+/*Icon Fonts*/
+.loader {
+    background: #605ca8;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.sk-folding-cube {
+    display: inline-block;
+    height: 60px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60px;
+    z-index: 10;
+}
+
+.sk-folding-cube {
+    transform: rotateZ(45deg);
+}
+
+    .sk-folding-cube .sk-cube {
+        float: left;
+        height: 50%;
+        position: relative;
+        transform: scale(1.1);
+        width: 50%;
+    }
+
+        .sk-folding-cube .sk-cube::before {
+            animation: 2.4s linear 0s normal both infinite running sk-foldCubeAngle;
+            background-color: #ffffff;
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transform-origin: 100% 100% 0;
+            width: 100%;
+        }
+
+    .sk-folding-cube .sk-cube2 {
+        transform: scale(1.1) rotateZ(90deg);
+    }
+
+    .sk-folding-cube .sk-cube3 {
+        transform: scale(1.1) rotateZ(180deg);
+    }
+
+    .sk-folding-cube .sk-cube4 {
+        transform: scale(1.1) rotateZ(270deg);
+    }
+
+    .sk-folding-cube .sk-cube2::before {
+        animation-delay: 0.3s;
+    }
+
+    .sk-folding-cube .sk-cube3::before {
+        animation-delay: 0.6s;
+    }
+
+    .sk-folding-cube .sk-cube4::before {
+        animation-delay: 0.9s;
+    }
+.headerClock {
+    margin: 0;
+    color: #fff;
+    padding: 5px 0;
+    display: inline-block;
+}
+
+    .headerClock li {
+        list-style: none;
+    }
+
+.sidebar-menu li a img {
+    width: 20px;
+    opacity: 0.9;
+}
+
+.sidebar-menu li a span {
+    margin-left: 10px;
+}
+
+.skin-purple .main-header .logo {
+    background-color: #222d32;
+}
+
+.skin-purple .main-header .logo:hover {
+        background-color: #222d32;
+    }
+
+.main-sidebar, .left-side {
+    padding-top: 20px;
+}
+
+.EMS-Logo img {
+    max-width: 122px !important;
+    width: 100% !important;
+    margin-bottom: 30px;
+}
+
+.sidebar-menu li:focus {
+    background: #62b6e2;
+}
+
+.treeview-menu {
+    padding-left: 25px;
+}
+
+@keyframes sk-foldCubeAngle {
+    0%, 10% {
+        opacity: 0;
+        transform: perspective(140px) rotateX(-180deg);
+    }
+
+    25%, 75% {
+        opacity: 1;
+        transform: perspective(140px) rotateX(0deg);
+    }
+
+    90%, 100% {
+        opacity: 0;
+        transform: perspective(140px) rotateY(180deg);
+    }
+}
+.box .overlay > .fa, .overlay-wrapper .overlay > .fa {
+    color: #62b6e2;
+}
+/*Loader CSS End*/
+/*Dasboard CSS Classes*/
+.modal {
+    overflow-y: auto;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+.modal-content {
+    border-radius: 0 !important;
+}
+
+.checkInBoxheight {
+    min-height: 240px;
+}
+
+.leavesBoxHeight {
+    min-height: 210px;
+}
+
+.white {
+    background-color: white;
+}
+
+.product-info .Emp-status-card .green, .green {
+    background-color: #00a65a;
+}
+
+.content-header > .breadcrumb > li > a {
+    color: #fff;
+}
+
+.table > tbody > tr > td:last-child, .table > tbody > thead > tr > th:last-child, .table > tbody > tr > th:last-child, .table > thead > tr > th:last-child {
+    text-align: right;
+}
+
+.product-info .Emp-status-card .tooltip {
+    z-index: 1;
+}
+
+.appPopHeader h4 {
+    margin: 0;
+}
+
+.WFHRequestBottomArea {
+    background: #00c0ef !important;
+    padding: 15px 0 15px 0;
+}
+
+    .WFHRequestBottomArea span {
+        color: #fff;
+    }
+
+.appPopHeader {
+    background-color: #00a7d0 !important;
+    color: #fff;
+}
+
+    .appPopHeader h4, .appPopHeader button {
+        display: inline-block;
+    }
+
+    .appPopHeader img {
+        float: right;
+        cursor: pointer;
+    }
+
+.LAPopUp-Buttons {
+    background-color: #00a7d0;
+    text-align: right;
+    padding: 15px 15px;
+}
+
+.appPopHeader {
+    padding: 15px;
+}
+
+.ACPopUpSelector select {
+    width: 100%;
+}
+
+.leaveCorrectionPopUpReason textarea {
+    width: 100%;
+}
+/*Tooltip Css*/
+.Emp-status-card .tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 9;
+    font-size: 14px;
+}
+
+.tooltiptext {
+    opacity: 10;
+    font-size: 12px !important
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: #62b6e2;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 0;
+    min-width: 205px;
+    /* Position the tooltip */
+    position: absolute;
+    padding: 5px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.custom-curoser {
+    cursor: pointer;
+}
+
+/**Employ Attendence Page Css start*/
+.appPopHeader h4 {
+    margin: 0;
+}
+
+.WFHRequestBottomArea {
+    background: #00c0ef !important;
+    padding: 15px 0 15px 0;
+}
+
+    .WFHRequestBottomArea span {
+        color: #fff;
+    }
+
+.appPopHeader {
+    background-color: #00a7d0 !important;
+    color: #fff;
+}
+
+    .appPopHeader h4, .appPopHeader button {
+        display: inline-block;
+    }
+
+    .appPopHeader img {
+        float: right;
+        cursor: pointer;
+    }
+
+.LAPopUp-Buttons {
+    background-color: #00a7d0;
+    text-align: right;
+    padding: 15px 15px;
+}
+
+.appPopHeader {
+    padding: 15px;
+}
+
+.ACPopUpSelector select {
+    width: 100%;
+}
+
+.leaveCorrectionPopUpReason textarea {
+    width: 100%;
+}
+/**Employ Attendence Page Css End*/
+
+/**Dashboard Css*/
+/*Changes by UX Start*/
+.table tbody tr {
+    cursor: pointer;
+}
+.RemainingLeaves {
+    text-align: center;
+}
+.error-message {
+    color: red;
+}
+.modal-content .modal-body textarea {
+    resize: none;
+}
+.boxPadding {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.modal {
+    overflow-y: auto !important;
+}
+.btn-rounded {
+    border-radius: 20px !important;
+}
+.btn-align {
+    display: inline-block;
+    float: right;
+}
+.btn-align-left {
+    display: inline-block;
+    float: left;
+}
+.spanMargin {
+    padding-bottom: 10px;
+    display: inline-block;
+}
+.modal-header {
+    padding: 15px 30px !important;
+}
+.modal-body {
+    padding: 30px !important;
+}
+.modal-footer {
+    padding: 15px 30px;
+}
+.modal-header {
+    padding: 15px 30px !important;
+    background-color: #333333;
+    color: #fff;
+}
+    .modal-header button span, .modal-header button {
+        color: #fff;
+        font-weight: 400;
+        font-size: 28px;
+        opacity: 3 !important;
+        padding-left: 5px;
+        padding-right: 10px;
+        margin-right: -10px;
+    }
+.modal-header button span:hover, .modal-header button:hover {
+    color: #fff;
+}
+.modal-content {
+    box-shadow: none !important;
+}
+.modal {
+    background: none !important;
+}
+textarea {
+    min-height: 90px !important;
+    width: 100%;
+}
+.skin-purple .main-header li.user-header{
+    background-color: #62b6e2;
+}
+.box.box-primary {
+    border-top-color: #62b6e2;
+}
+.btn-primary {
+    background-color: #62b6e2 !important;
+    border-color: #62b6e2 !important;
+}
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
+    background-color: #62b6e2 !important;
+    border-top: 1px solid #fff;
+}
+.products-list .product-img {
+    width: 50px;
+    overflow: hidden;
+}
+.products-list .product-img img {
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+    object-fit: cover;
+}
+.skin-purple .sidebar-menu > li:hover > a, .skin-purple .sidebar-menu > li.active > a {
+    color: #fff;
+    background: #62b6e2;
+    border-left-color: #57a4cb;
+}
+.skin-purple .main-header .navbar {
+    background-color: #62b6e2;
+    
+}
+.userBg {
+    background-color: #57a4cb
+}
+.userBg:hover {
+    background-color: #62b6e2;
+}
+.transformCenter {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.content-wrapper {
+    background-color: #f7f7f7;
+}
+.box .box-primary {
+    padding: 7px;
+}
+.box {
+    margin-bottom: 30px;
+}
+.box-header  {
+    padding: 10px 10px 0 10px !important;
+}
+.content-header>h1 {
+    display: inline-block;
+}
+.userTimeBox {
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.userTimeBox span {
+    font-weight: 600 !important;
+}
+.userTimeBox label {
+    margin: 0;
+    font-weight: 500;
+}
+.right-Margin {
+    margin-right: 15px;
+}
+/*Changes by UX End*/
+.input-group-addon:last-child {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.calenderPlacement i {
+    position: absolute !important;
+    top: 10px;
+    right: 10px;
+    z-index: 9;
+    font-size: 19px;
+}
+
+.v-align {
+    display: inline-block;
+    float: none !important;
+    margin-right: -4px;
+    vertical-align: middle;
+}
+
+.modal .form-group .form-control, .form-control {
+    height: 35px;
+}
+.form-control {
+    border-radius: 4px;
+}
+
+.modal .form-group label {
+    font-weight: 600;
+    font-size: 14px;
+}
+.leaveBoxes table tr td {
+    margin: 0 10px;
+    display: inline-block;
+}
+/*Gernal CSS End*/
+/*Login Page*/
+.loginPage {
+    color: #fff;
+}
+
+.loginPage:after {
+    background-image: url("../Images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: "";
+    z-index: -1;
+}
+
+.loginForm {
+    background: rgba(51, 51, 51, 0.5) none repeat scroll 0 0;
+    color: #ffffff;
+    display: inline-block;
+    max-width: 345px;
+    text-align: center;
+    padding: 20px;
+}
+/*LoginPage End*/
+/*SideBar*/
+.user-panel > .image > img {
+    height: 45px;
+}
+
+.angular-gauge {
+    position: relative;
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.informationIcon a {
+    margin: 10px 10px;
+}
+/*.boxBottomarea {
+    overflow-y: scroll;
+    height: 405px;
+}*/
+/*Page Top section*/
+.content-header {
+    position: relative;
+}
+.content-header > .breadcrumb {
+    position: relative;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+    .content-header > div > div > h1 {
+        display: inline-block;
+        margin: 0;
+        font-size: 24px;
+    }
+.content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/***All Employee Search list CSS Start **/
+.employeeSearch input:focus {
+    outline: none;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.employList-scroll {
+    height: 533px;
+    overflow-y: scroll;
+}
+
+.employeeSearch input {
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-bottom: 1px solid #000;
+    
+}
+
+.employeeSearch i {
+    position: absolute;
+    right: 15px;
+    font-size: 17px;
+    top: 45px;
+}
+
+.employeeList ul {
+    padding: 0;
+    margin: 0;
+}
+
+    .employeeList ul li {
+        list-style: none;
+        text-align: left;
+        padding: 13px 10px;
+        width: 100%;
+        position: relative;
+    }
+
+        .employeeList ul li h4 {
+            padding-bottom: 5px;
+        }
+
+        .employeeList ul li span {
+            color: #d2d2d2;
+        }
+
+.product-info .dotStatus {
+    padding: 3px 7px;
+    display: inline-block;
+    background: #000;
+    border-radius: 12px;
+    position: absolute;
+    bottom: 25px;
+    right: 15px;
+    font-size: 10px;
+    color: #fff;
+}
+/***All Employee Search list CSS End **/
+
+/***All Employee Search list CSS Start **/
+.notificationTop label {
+    margin-right: 10px
+}
+
+/***All Employee Search list CSS End **/
+/***Employee Attendance page CSS start **/
+
+.costum-Ellipsis {
+    white-space: nowrap;
+    width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #000000;
+}
+
+.marginTop {
+    margin-top: 20px;
+}
+.marginBottom {
+    margin-bottom: 20px;
+}
+/***Employee Attendance page CSS start **/
+.WFHitemMargin {
+    margin-bottom: 30px;
+}
+.WFHitemMarginTop {
+    margin-top: 30px;
+}
+/***Employee Attendance page CSS End **/
+
+/***WFH page CSS start **/
+.compensationSec {
+    text-align: right;
+    font-size: 24px;
+}
+
+    .compensationSec h2 {
+        display: inline-block;
+    }
+
+    .compensationSec span:last-child {
+        color: #81c811;
+    }
+
+    .compensationSec span {
+        color: #ffa800;
+    }
+
+.detailInformation p {
+    display: inline;
+    margin-left: 5px;
+}
+/***WFH page CSS End **/
+.btn.btn-primary {
+    line-height: 20px;
+}
+.btn.btn-primary, .btn.btn-danger {
+    min-width: 90px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group span {
+    font-size: 14px;
+}
+
+.employeeImageArea img {
+    max-width: 170px;
+    min-height: 170px;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 2px solid #d9d9d9;
+}
+
+.imgUpLoadButton {
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.imgUpLoadButton label {
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+.imgUpLoadButton button {
+    padding: 6px 15px;
+}
+
+.imgUpLoadButton span .glyphicon {
+    top: -1px !important;
+    font-size: 12px !important;
+}
+/*Croper Css*/
+.imageBox {
+    position: relative;
+   width: 100%;
+   height: auto;
+    border: 1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor: move;
+    margin: 0 auto;
+}
+
+    .imageBox .thumbBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        margin-top: -100px;
+        margin-left: -100px;
+        border: 1px solid rgb(102, 102, 102);
+        box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+        background: none repeat scroll 0% 0% transparent;
+    }
+
+    .imageBox .spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        line-height: 400px;
+        background: rgba(0,0,0,0.7);
+    }
+
+.action {
+    height: 30px;
+    margin: 0;
+}
+
+.cropped > img {
+    margin-right: 10px;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th {
+    vertical-align: middle;
+}
+
+.products-list li {
+    position: relative;
+}
+
+.searchDropDown {
+    position: absolute;
+    top: 65px;
+    background: #f7f7f7;
+    left: 15px;
+    right: 15px;
+    z-index: 9;
+}
+
+    .searchDropDown ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .searchDropDown ul li {
+            cursor: pointer;
+        }
+
+        .searchDropDown ul li {
+            padding: 8px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .searchDropDown ul a {
+            color: #333;
+        }
+
+.tagsButton button {
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+.tagsButton {
+    margin-top: 5px;
+}
+
+@media (min-width: 768px) {
+}
+
+.selectedTeam {
+    border: solid #4CAF50 1px;
+    float: left;
+    margin: 2px;
+    padding: 2px 15px;
+}
+
+    .selectedTeam a {
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+.imageBox {
+    position: relative;
+    height: 100%;
+    min-height: 200px;
+    width: 100%;
+    border: 1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor: move;
+}
+
+    .imageBox .thumbBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        margin-top: -100px;
+        margin-left: -100px;
+        border: 1px solid rgb(102, 102, 102);
+        box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+        background: none repeat scroll 0% 0% transparent;
+    }
+
+    .imageBox .spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        line-height: 400px;
+        background: rgba(0,0,0,0.7);
+    }
+
+.container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 0;
+    bottom: 0;
+}
+
+.action {
+    width: 400px;
+    height: 30px;
+    margin: 10px 0;
+}
+
+.cropped > img {
+    margin-right: 10px;
+}
+/*Approve Leave Application CSS Start*/
+.userInfo {
+    text-align: center;
+}
+
+    .userInfo .userDP img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+.LeaveApplication-PopUp {
+    background-color: #353535 !important;
+}
+/*Approve Leave Application CSS End*/
+
+.modal-content {
+    margin-bottom: 15px;
+    top: -600px;
+    animation: drop 0.9s ease forwards;
+    border-radius: 0 !important;   
+}
+.modal.fade.in .modal-content {    
+    -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.125) !important;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.125) !important;
+}
+
+@keyframes drop {
+    0% {
+        opacity: 0
+    }
+
+    70% {
+        transform: translateY(700px)
+    }
+
+    100% {
+        transform: translateY(650px)
+    }
+}
+
+.attendanceCorrectionReason textarea {
+    width: 100%;
+    color: #000;
+    padding: 5px;
+}
+
+.fiscalLeaveimgSec {
+    text-align: center;
+    font-size: 18px;
+}
+.fiscalLeaveimgSec img {
+    max-width: 300px;
+    width: 100%;
+}
+
+.loader {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1051;
+    background: rgba(0,0,0,0.7);
+}
+
+.circle {
+    height: 60px;
+    width: 60px;
+}
+
+.circle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    left: 0;
+}
+
+.sk-circle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sk-circle2 {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg)
+}
+
+.sk-circle3 {
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg)
+}
+
+.sk-circle4 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.sk-circle5 {
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg)
+}
+
+.sk-circle6 {
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg)
+}
+
+.sk-circle7 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.sk-circle8 {
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg)
+}
+
+.sk-circle9 {
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg)
+}
+
+.sk-circle10 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg)
+}
+
+.sk-circle11 {
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg)
+}
+
+.sk-circle12 {
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg)
+}
+
+.sk-circle:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #fff;
+    border-radius: 100%;
+    -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleFadeDelay 1.2s infinite ease-in-out both
+}
+
+.sk-circle2:before {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s
+}
+
+.sk-circle3:before {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s
+}
+
+.sk-circle4:before {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s
+}
+
+.sk-circle5:before {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s
+}
+
+.sk-circle6:before {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s
+}
+
+.sk-circle7:before {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s
+}
+
+.sk-circle8:before {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s
+}
+
+.sk-circle9:before {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s
+}
+
+.sk-circle10:before {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s
+}
+
+.sk-circle11:before {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s
+}
+
+.sk-circle12:before {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s
+}
+
+@-webkit-keyframes sk-circleFadeDelay {
+    0%, 39%, 100% {
+        opacity: 0
+    }
+
+    40% {
+        opacity: 1
+    }
+}
+
+@keyframes sk-circleFadeDelay {
+    0%, 39%, 100% {
+        opacity: 0
+    }
+
+    40% {
+        opacity: 1
+    }
+}
+.table-black th,.table-black tbody th {
+    background-color: #222d32 !important;
+    color: #ffffff !important;
+}
+
+.max-width {width: 100% !important;}
+.m-b-10 {
+    margin-bottom: 10px !important;
+}
+.m-b-20 {
+    margin-bottom: 20px !important;
+}
+.m-b-30 {
+    margin-bottom: 30px !important;
+}

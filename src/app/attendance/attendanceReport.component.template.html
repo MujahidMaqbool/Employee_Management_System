@@ -1,0 +1,137 @@
+﻿<div class="content-header">
+    <h1>
+        Attendence Report
+    </h1>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <div class="input-group marginTop">
+                <input type="text" class="form-control" [(ngModel)]="FromDate"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker #dp1="bsDatepicker"
+                    placement="bottom left">
+                <!--<div *ngIf="showFromDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                            <datepicker [(ngModel)]="FromDate" [showWeeks]="true" (selectionDone)="showFromDatePicker = false" (ngModelChange)="onDateChange()"></datepicker>
+                            <datepicker [(ngModel)]="FromDate" [showWeeks]="true" (selectionDone)="showFromDatePicker = false"></datepicker>
+                        </div>-->
+                <span class="input-group-addon" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen"><span
+                        class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <div class="input-group marginTop">
+
+                <input type="text" class="form-control" [(ngModel)]="ToDate"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker #dp2="bsDatepicker"
+                    placement="bottom left">
+                <!--<div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                            <datepicker [(ngModel)]="ToDate" [showWeeks]="true" (selectionDone)="showToDatePicker = false;" (ngModelChange)="onDateChange()"></datepicker>
+                            <datepicker [(ngModel)]="ToDate"  (ngModelChange)="onEndDateChange()" [showWeeks]="true" (selectionDone)="showToDatePicker = false;"></datepicker>
+                        </div>-->
+                <span class="input-group-addon" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen"><span
+                        class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group col-sm-4 marginTop" *ngIf="Employees.length != 1">
+
+            <!-- <ngx-select-dropdown (change)="SelectedEmployee($event)" [config]="dropDownConfig" [options]="options11"
+                [(ngModel)]="selectedEmployee" [multiple]="true"></ngx-select-dropdown> -->
+
+            <select class="form-control" [(ngModel)]="selectedEmployee" (change)="SelectedEmployee()">
+                <option value="" selected>All</option>
+                <option *ngFor='let emp of Employees; ' [ngValue]="emp">{{emp.EmployeeName}}</option>
+            </select>
+        </div>
+        <div class="WFHbutton col-sm-2 marginTop">
+            <button type="button" class="btn btn-block btn-primary" (click)="Search()">Search</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="Employees.length != 1">
+        <div class="col-sm-12">
+            <div class="tagsButton">
+                <button *ngFor='let emp of selectedEmployeeList; ' type="button" class="btn bg-orange btn-labeled">
+                    <span (click)="RemoveEmployee(emp)" class="btn-label">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </span>{{emp.EmployeeName}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- <div class="col-sm-3">
+            <button
+                onclick="$('#AttendanceTable').tableExport({ type: 'csv', tableName: 'Attendance Report', escape: 'false', filename: 'Attendence Report' });"
+                class="btn btn-block btn-primary" id="reportCSV">Export to CSV</button>
+        </div> -->
+        <div class="col-sm-3">
+            <button (click)="exportAsXLSX()" class="btn bg-olive btn-block"> <i class="fa fa-file-excel-o"
+                    style="font-size:18px;"></i>
+                Export to Excel</button>
+            <!-- <button class="btn btn-block btn-primary" id="reportExcel"
+                onclick="$('#AttendanceTable').tableExport({ type: 'excel', tableName: 'Attendance Report', escape: 'false', filename: 'Attendence Report' });">Export
+                to Excel</button> -->
+        </div>
+
+        <!--<div class="col-sm-6" *ngIf="Employees.length != 1">
+                    <input type="radio" name="radioOrderBy" checked (click)="listOrder = ['Date','EmployeeName']"> Order by date<br>
+                    <input type="radio" name="radioOrderBy" (click)="listOrder = ['EmployeeName', 'Date']"> Order by name<br>
+         </div>-->
+    </div>
+</div>
+
+
+
+
+<div class="content">
+    <div class="loader" [ngClass]="Loader ? '':'hidden'">
+        <!---->
+        <div class="circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-body table-responsive no-padding">
+            <table id="AttendanceTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Required Hours</th>
+                        <th>Hours in Office</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let report of EmployeeReportList; let i = index;'>
+                        <td scope="row">{{report.Date | date:'dd-MM-yyyy'}}</td>
+                        <td>{{report.EmployeeCode}}</td>
+                        <td>{{report.EmployeeName}}</td>
+                        <td>{{report.EmployeeDesignation}}</td>
+                        <td *ngIf="report.ActualTimeIn != ''">{{report.ActualTimeIn}}</td>
+                        <td *ngIf="report.ActualTimeIn == ''">-</td>
+                        <td *ngIf="report.ActualTimeOut != ''">{{report.ActualTimeOut}}</td>
+                        <td *ngIf="report.ActualTimeOut == ''">-</td>
+                        <td>{{report.RequiredHours}}</td>
+                        <td *ngIf="report.ActualHour != ''">{{report.ActualHour}}</td>
+                        <td *ngIf="report.ActualHour == ''">-</td>
+                        <td *ngIf="report.Remarks != ''">{{ report.Remarks | limitTo : 20 }}</td>
+                        <td *ngIf="report.Remarks == ''">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

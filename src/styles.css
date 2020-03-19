@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+ngb-datepicker-navigation {
+    min-width: 320px;
+}
+ngb-datepicker-navigation-select > .custom-select {
+    margin:5px 10px 0 10px !important;
+}
+.ngb-dp-day, .ngb-dp-week-number, .ngb-dp-weekday {
+    width:100% !important;
+}
+[ngbDatepickerDayView] {
+    width:2.6rem !important; 
+    
+}
+.bg-primary.text-white {
+    background-color: #337ab7 !important;
+}

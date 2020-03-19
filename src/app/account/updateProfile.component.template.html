@@ -1,0 +1,444 @@
+<div class="content-header">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 style="margin:0;font-size: 24px;">Profile</h2>
+        </div>
+        <div class="col-sm-6" *ngIf="!isDisabled && EmployeeActive">
+            <button type="button" class="btn pull-right btn-danger" (click)="OpenDeletePopUp()">Do you want deactivate
+                ?</button>
+        </div>
+        <div class="col-sm-6" *ngIf="!isDisabled && !EmployeeActive">
+            <button type="button" class="btn pull-right btn-danger" (click)="OpenDeletePopUp()">Do you want activate
+                ?</button>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="box">
+        <div class="box-body boxPadding">
+            <div class="loader" [ngClass]="Loader ? '':'hidden'">
+                <!---->
+                <div class="circle">
+                    <div class="sk-circle1 sk-circle"></div>
+                    <div class="sk-circle2 sk-circle"></div>
+                    <div class="sk-circle3 sk-circle"></div>
+                    <div class="sk-circle4 sk-circle"></div>
+                    <div class="sk-circle5 sk-circle"></div>
+                    <div class="sk-circle6 sk-circle"></div>
+                    <div class="sk-circle7 sk-circle"></div>
+                    <div class="sk-circle8 sk-circle"></div>
+                    <div class="sk-circle9 sk-circle"></div>
+                    <div class="sk-circle10 sk-circle"></div>
+                    <div class="sk-circle11 sk-circle"></div>
+                    <div class="sk-circle12 sk-circle"></div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="col-sm-3 text-center">
+                    <div class="displayemployeeImg">
+                        <div id="preview" class="employeeImageArea">
+                            <!--<i class='fa fa-times'></i>-->
+                            <img src="{{employeeImg}}" alt="" />
+                        </div>
+                    </div>
+                    <div class="imgUpLoadButton">
+                        <button style="background: none;" type="button" class="btn btn-primary btn-rounded"
+                            (click)="OpenCropImagePopUp()">Add photo</button>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div *ngIf="!isDisabled">
+                                    <label>Team</label>
+                                    <input class="form-control" type="text" placeholder="Search Team"
+                                        [(ngModel)]=searchTeam (keyup)=FilterTeam()>
+                                </div>
+                                <!-- <span>{{teamErrMsg}}</span> -->
+                                <div class="searchDropDown" *ngIf="filteredTeamList.length > 0 && !isDisabled">
+                                    <ul *ngFor='let team of filteredTeamList; '>
+                                        <li>
+                                            <a (click)="SelectedTeam(team)">{{team.TeamName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tagsButton">
+                                    <button *ngFor='let team of selectedTeamList; ' type="button"
+                                        class="btn btn-primary">
+                                        <span (click)="RemoveTeam(team)" class="btn-label" *ngIf="!isDisabled">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </span>{{team.TeamName}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Serial Number</label>
+                                <input class="form-control" type="text" [(ngModel)]="employeeSerialNumber"
+                                    [disabled]="isDisabled">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Expertise</label>
+                                <select *ngIf="!isDisabled" class="form-control" [(ngModel)]="selectedDepartment">
+                                    <option value="0" disabled selected>Select Expertise</option>
+                                    <option *ngFor='let department of departmentList;' value="{{department.DeptId}}">
+                                        {{department.DeptName}}</option>
+                                </select>
+                                <input *ngIf="isDisabled" class="form-control" disabled value={{DeptName}}>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" type="text" [(ngModel)]="employeeName"
+                                    [disabled]="isDisabled">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Short Name</label>
+                                <input class="form-control" type="text" [(ngModel)]="employeeShortName"
+                                    [disabled]="isDisabled">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select *ngIf="!isDisabled" class="form-control" [(ngModel)]="selectedRole">
+                                    <option value="0" disabled selected>Select Role</option>
+                                    <option *ngFor='let role of employeeRoleList;' value={{role.RoleId}}>{{role.Role}}
+                                    </option>
+                                </select>
+                                <input *ngIf="isDisabled" class="form-control" disabled value={{EmployeeRoleName}}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <select *ngIf="!isDisabled" class="form-control" [(ngModel)]="selectedDesignation">
+                                    <option *ngFor='let designation of employeeDesignationList;'
+                                        value={{designation.DesignationId}}>{{designation.Designation}}</option>
+                                </select>
+                                <input *ngIf="isDisabled" class="form-control" disabled value={{Designation}}>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Code</label>
+                                <input class="form-control" type="text" [(ngModel)]="employeeCode"
+                                    [disabled]="isDisabled">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Joining date</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel"
+                                        [(ngModel)]="joiningDate" ngbDatepicker #d2="ngbDatepicker"
+                                        (dateSelect)="onChangejoiningDate($event)" readonly="readonly" />
+
+                                    <span *ngIf="isSuperAdmin" class="input-group-addon" (click)="d2.toggle()"><span
+                                            class="glyphicon glyphicon-calendar"></span></span>
+
+                                    <span *ngIf="!isSuperAdmin" class="input-group-addon"><span
+                                            class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Date of birth</label>
+
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="dd/mm/yyyy" name="d3" #c3="ngModel"
+                                        [(ngModel)]="dateOfBirth" ngbDatepicker #d3="ngbDatepicker"
+                                        (dateSelect)="onChangejoiningDate($event)" readonly="readonly" />
+
+                                    <span *ngIf="isSuperAdmin" class="input-group-addon" (click)="d3.toggle()"><span
+                                            class="glyphicon glyphicon-calendar"></span></span>
+                                    <span *ngIf="!isSuperAdmin" class="input-group-addon"><span
+                                            class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="text" [(ngModel)]="email" [disabled]="isDisabled">
+                            </div>
+                            <!-- <span>{{emailErrMsg}}</span> -->
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" [(ngModel)]="primaryPhone"
+                                    (keypress)="isNumber($event)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Emergency contact person</label>
+                                <input class="form-control" type="text" [(ngModel)]="relativeName">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Emergency phone</label>
+                                <input class="form-control" type="text" [(ngModel)]="relativePhoneNumber"
+                                    (keypress)="isNumber($event)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Skype</label>
+                                <input class="form-control" type="text" [(ngModel)]="skypeId" [disabled]="isDisabled">
+                            </div>
+                        </div>
+
+                        <!--<div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Current Country</label>
+                                <select class="form-control" [(ngModel)]="selectedCurrentCountry" (change)="GetCurrentCitiesByCountry($event.target.value, 'false')">
+                                    <option value="0" disabled selected>Select country</option>
+                                    <option *ngFor='let country of CountryList; ' value={{country.ID}}>{{country.Name}}</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Reporting to</label>
+                                <select class="form-control" [(ngModel)]="selectedReportEmployee" *ngIf="!isDisabled">
+                                    <option value="null" disabled selected>Select Employee</option>
+                                    <option *ngFor='let employee of reportingEmployeeList;'
+                                        value={{employee.EmployeeId}}>
+                                        {{employee.EmployeeName}}</option>
+                                </select>
+                                <input *ngIf="isDisabled" class="form-control" disabled value={{ReporToName}}>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix">
+
+                        <!--<div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Current City</label>
+                                <select class="form-control" [(ngModel)]="selectedCurrentCity">
+                                    <option value="0" disabled selected>Select city</option>
+                                    <option *ngFor='let city of currentCityList; ' value={{city.ID}}>{{city.Name}}</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select class="form-control" [(ngModel)]="selectedPermanentCountry"
+                                    (change)="GetPermenentCitiesByCountry($event.target.value, 'false')">
+                                    <option value="0" disabled selected>Select country</option>
+                                    <option *ngFor='let country of CountryList; ' value={{country.ID}}>
+                                        {{country.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <select class="form-control" [(ngModel)]="selectedPermanentCity">
+                                    <option value="0" disabled selected>Select city</option>
+                                    <option *ngFor='let city of permanentCityList; ' value={{city.ID}}>
+                                        {{city.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Current address</label>
+                                <textarea class="form-control" [(ngModel)]="currentAddress"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Permanent address</label>
+                                <textarea class="form-control" [(ngModel)]="permanentAddress"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary margin-r-5" (click)="UpdateEmployee()">Update</button>
+                            <button class="btn btn-default" (click)="OpenPasswordPopUp()">Change Password</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<style>
+    .uploadFileBtn {
+        padding: 5px;
+        background: #62b6e2;
+        display: table;
+        color: #fff;
+        border-radius: 4px;
+        font-weight: 400;
+        margin-bottom: 15px;
+    }
+
+    .uploadFileBtn input[type="file"] {
+        display: none;
+    }
+</style>
+
+<!--image cropper-->
+<div class="modal-backdrop fade in" [style.display]="cropImageModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="SavePopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="cropImageModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog cropModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="CloseCropImagePopUp()">&times;</button>
+                <h4 class="modal-title">Profile Image</h4>
+            </div>
+            <div class="modal-body">
+                <label class="uploadFileBtn">
+                    Choose file
+                    <input type="file" (change)="fileChangeEvent($event)" /><br />
+                </label>
+
+                <div class="imageBox">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                        [aspectRatio]="1 / 1" [imageQuality]="100" [resizeToWidth]="0" format="jpeg"
+                        (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                        (loadImageFailed)="loadImageFailed()"></image-cropper>
+                </div>
+                <br />
+                <div *ngIf="ImageValidator" class="error-message">
+                    <p>invalid image</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <button class="btn btn-primary" (click)="CloseCropImagePopUp()">Crop</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Change Password Modal -->
+<div class="modal-backdrop fade in" [style.display]="passwordShowModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="PopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="passwordShowModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button (click)="ClosePasswordPopUp()" type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6" *ngIf="!IsAdmin">
+                        <div class="form-group">
+                            <label>Old Password</label>
+                            <input class="form-control" type="{{oldPwdType}}" [(ngModel)]="oldPassword"
+                                (focus)="OldPwdChange()">
+                            <!--<button type="button" (click)="ToggleOldPassword()">
+         <img src="../../assets/Images/eye.png" />
+        </button>-->
+                            <span class="text-red help-block">{{oldPwdErrMsg}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input class="form-control" type="{{newPwdType}}" [(ngModel)]="newPassword"
+                                (focus)="NewPwdChange()">
+                            <!--<button type="button" (click)="ToggleNewPassword()">
+                                <img src="../../assets/Images/eye.png" />                         </button>-->
+                            <span class="text-red help-block">{{newPwdErrMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input class="form-control" type="{{confPwdType}}" [(ngModel)]="confirmPassword"
+                                (focus)="ConfPwdChange()">
+                            <!--<button type="button" (click)="ToggleConfPassword()">
+    <img src="../../assets/Images/eye.png" />
+        </button>-->
+                            <span class="text-red help-block">{{ConfPwdErrMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="ChangeEmployeePassword()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Employee Modal -->
+<div class="modal-backdrop fade in" [style.display]="deleteShowModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="SavePopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="deleteShowModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button (click)="CloseDeletePopUp()" type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Update Profile</h4>
+            </div>
+            <div class="modal-body">
+                <p *ngIf="EmployeeActive">Are you sure you want to delete employee</p>
+                <p *ngIf="!EmployeeActive">Are you sure you want to active employee</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-left" (click)="Delete()">Yes</button>
+                <button type="button" class="btn btn-primary" (click)="CloseDeletePopUp()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

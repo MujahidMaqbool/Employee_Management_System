@@ -1,0 +1,424 @@
+﻿<section class="content-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>
+                Dashboard
+                <!--<small>Version 2.0</small>-->
+            </h1>
+        </div>
+        <div class="col-md-8 text-right">
+            <button type="button" class="btn btn-primary right-Margin" (click)="OpenWFHPopUp()">
+                Apply WFH
+            </button>
+            <button class="btn btn-primary right-Margin" [routerLink]="['/leaveApplication']">
+                Leave Request
+            </button>
+            <button type="button" class="btn btn-primary" (click)="AttendanceCorrectionPopUp()">Attendance
+                Correction</button>
+            <!--<li class="active">{{currentDate}}</li>
+    <li class="active">{{currentTime}}</li>-->
+        </div>
+    </div>
+</section>
+<div class="content">
+    <div class="loader" [ngClass]="Loader ? '':'hidden'">
+        <!---->
+        <div class="circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    <div *ngIf="ShowMessage" class="error-message fade in alert-dismissable userAlert">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        {{responseMessage}}
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="box box-primary">
+                <div class="overlay" *ngIf="DashBoardLoader">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <div class="box-header">
+                    <h3 class="box-title">Current Month Attendance History</h3><br /><br />
+
+                    <!--<div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>-->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body leavesBoxHeight" *ngIf="!DashBoardLoader">
+
+                    <div class="rowp">
+                        <div class="col-md-4">
+                            <div class="userTimeBox">
+                                <label>Days Attended: </label> <span>{{daysLapsed}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="userTimeBox">
+                                <label>Required Hours: </label> <span>{{requiredHours}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="userTimeBox">
+                                <label>Reported Hours: </label> <span>{{hoursinOffice}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxBottomarea">
+                        <!--<ng-gauge [max]="100" [input]="70"></ng-gauge>-->
+                        <div class="barometerImage">
+                            <div class="barometerTable">
+                                <table id="table-scroll" class="table" style="margin-bottom: 0;">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Check In/Out</th>
+                                            <th>Status</th>
+                                            <th>Total Hours</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="checkInBoxheight">
+                                        <tr class="custom-curoser"
+                                            *ngFor='let attendace of DashBoardSummary.EmployeeAttendance; '
+                                            (click)="GoToAttendance()">
+                                            <td>{{attendace.Date | date:'dd-MM-yyyy'}}</td>
+                                            <td *ngIf="attendace.ActualTimeIn != '' && attendace.ActualTimeOut != '' ">
+                                                <span>Check In: {{attendace.ActualTimeIn}}</span>
+                                                <span>Check Out: {{attendace.ActualTimeOut}}</span>
+                                            </td>
+                                            <td *ngIf="attendace.ActualTimeIn == '' && attendace.ActualTimeOut == '' ">
+                                                <span> - </span>
+                                            </td>
+                                            <td *ngIf="attendace.Remarks != '' ">
+                                                <span>{{ attendace.Remarks | limitTo : 20 }}</span></td>
+                                            <td
+                                                *ngIf="attendace.Remarks == '' || attendace.Remarks == null || attendace.Remarks == undefined ">
+                                                -</td>
+                                            <td *ngIf="attendace.ActualHour != ''">{{attendace.ActualHour}}</td>
+                                            <td *ngIf="attendace.ActualHour == ''">-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">Leaves</h3>
+                            <!--<div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>-->
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- .box-body -->
+                        <div class="box-body leavesBoxHeight">
+                            <div class="overlay" *ngIf="DashBoardLoader">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                            <table class="table" *ngIf="!DashBoardLoader">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Availed</th>
+                                        <th>Remaining</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="custom-curoser"
+                                        *ngFor="let LeavesSummary of DashBoardSummary.EmployeeLeavesSummary; let i = index"
+                                        (click)="GoToLeavs()">
+                                        <td>{{LeavesSummary.LeaveType}}</td>
+                                        <td>{{LeavesSummary.AvailedLeaves}}</td>
+                                        <td>{{LeavesSummary.RemainingLeaves}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">Application Status</h3>
+
+                            <!--<div class="box-tools pull-right">
+
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>-->
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- .box-body -->
+                        <div class="box-body leavesBoxHeight">
+                            <div class="overlay" *ngIf="DashBoardLoader">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                            <table class="table" *ngIf="!DashBoardLoader">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="custom-curoser" *ngFor='let leave of DashBoardSummary.EmployeeLeaves; '
+                                        (click)="GoToApplicationStatus(leave.TransactionId)">
+                                        <td>{{leave.FromDateTime | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{leave.LeaveType}}</td>
+                                        <td *ngIf="leave.Status == 'Reject'">Rejected</td>
+                                        <td *ngIf="leave.Status == 'Cancel'">Cancelled</td>
+                                        <td *ngIf="leave.Status == 'Approve'">Approved</td>
+                                        <td *ngIf="leave.Status == 'Pending'">Pending</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Employees</h3>
+
+                    <!--<div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>-->
+                </div>
+                <div class="employeeSearch">
+                    <input type="text" name="search" placeholder="Search Employee" [(ngModel)]=SearchString
+                        (keyup)=SearchEmployee()>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <ul class="products-list product-list-in-box employList-scroll">
+                        <li *ngFor='let EmployeeStatus of EmployeeStatusModel; ' class="item">
+                            <div class="product-img">
+                                <img src="{{EmployeeStatus.ImageUrl}}">
+                            </div>
+                            <div class="product-info">
+                                <div class="Emp-status-card">
+                                    <h4 class="tooltip">
+                                        {{EmployeeStatus.Name}} <span class="tooltiptext">
+                                            <span style="display: block;">Phone: {{EmployeeStatus.PhoneNumber}}</span>
+                                            <span style="display: block;">Email: {{EmployeeStatus.Email}}</span>
+                                        </span>
+                                    </h4>
+                                    <span>{{EmployeeStatus.Status}}</span>
+                                    <div *ngIf="EmployeeStatus.AttendanceCheckInStatus != '' " class="green dotStatus">
+                                        Active</div>
+                                    <!--<div [ngClass]="EmployeeStatus.AttendanceCheckInStatus == '' ? 'white' : 'green'" class="dotStatus"></div>-->
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop fade in" [style.display]="showWFHModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="PopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="showWFHModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="CloseWFHPopUp()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add Work From Home</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="clearfix ">
+                        <div class="row form-group ">
+                            <div class="col-sm-3  v-align">
+                                <label>Select Date</label>
+                            </div>
+                            <div class="col-sm-9  v-align">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Select Date"
+                                        aria-describedby="start-date" [(ngModel)]="WFHDate"
+                                        [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker
+                                        #dpto4="bsDatepicker">
+                                    <!--<div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px; right: 0; margin-top: 33px;">
+                                        <datepicker [(ngModel)]="WFHDate" [showWeeks]="true" (selectionDone)="showToDatePicker = false;"></datepicker>
+                                    </div>-->
+                                    <span class="input-group-addon" (click)="dpto4.toggle()"
+                                        [attr.aria-expanded]="dpto4.isOpen"><span
+                                            class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-3  v-align">
+                                <label>Start Time</label>
+                            </div>
+                            <div class="col-sm-9 v-align">
+                                <timepicker [minuteStep]="1" [(ngModel)]="WFHStartTime" (isValid)="isValid($event)">
+                                </timepicker>
+                                <div *ngIf="!validTime" class="error-message">Invalid time</div>
+                            </div>
+
+                        </div>
+                        <div class="row  form-group">
+                            <div class="col-sm-3  v-align">
+                                <label>Time Spent</label>
+                            </div>
+                            <div class="col-sm-9 v-align">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <select class="form-control select2"
+                                            (change)="onHourChange($event.target.value)">
+                                            <option value="">Hrs.</option>
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-control select2"
+                                            (change)="onTimeChange($event.target.value)">
+                                            <option value="">Mins.</option>
+                                            <option value="00">00</option>
+                                            <option value="15">15</option>
+                                            <option value="30">30</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="spanMargin">Reason</label>
+                        <textarea class="form-control" placeholder="Reason" rows="6" [(ngModel)]="WFHReason"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-right" [disabled]="!validTime"
+                    (click)="SaveWFHRequest()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal WFH PopUp -->
+
+<!-- Date Correction UserPopUp Start -->
+<div class="modal-backdrop fade in" [style.display]="showAttendanceCorrectionModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="PopUp-TopSec" tabindex="-1" role="dialog"
+    [style.display]="showAttendanceCorrectionModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="CloseAttendanceCorrectionPopup()"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Attendance Correction</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row workfromhomeReasonmargin form-group">
+                    <div class="col-sm-3 WFHtextalign v-align">
+                        <label>Select Date</label>
+                    </div>
+                    <div class="col-sm-9 calenderColor v-align">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Select Date"
+                                aria-describedby="start-date" [(ngModel)]="AttendanceCorrectionDate"
+                                (ngModelChange)="onDateChange()" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+                                bsDatepicker #dpto5="bsDatepicker">
+                            <!--<div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                                <datepicker [(ngModel)]="AttendanceCorrectionDate" (ngModelChange)="onDateChange()" [showWeeks]="true" (selectionDone)="showToDatePicker = false;"></datepicker>
+                            </div>-->
+                            <span class="input-group-addon" (click)="dpto5.toggle()"><span
+                                    class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row workfromhomeReasonmargin form-group">
+                    <div class="col-sm-3 v-align">
+                        <label>Select Status </label>
+                    </div>
+                    <div class="col-sm-9 v-align">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="ACPopUpSelector v-align">
+                                    <select class="form-control select2" (change)="onStatusChange($event.target.value)">
+                                        <option value="true">Check In</option>
+                                        <option value="false">Check Out</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span *ngIf="AttendanceTime != ''">Current Time: {{AttendanceTime}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-3 v-align">
+                        <label>Set Time</label>
+                    </div>
+                    <div class="col-sm-9 v-align">
+                        <timepicker [minuteStep]="1" [(ngModel)]="CorrectionTime" (isValid)="isValid($event)">
+                        </timepicker>
+                        <div *ngIf="!validTime" class="error-message">Invalid time</div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="spanMargin">Reason</label>
+                    <textarea class="form-control" placeholder="Reason"
+                        [(ngModel)]="AttendanceCorrectionReason"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [disabled]="!validTime"
+                    (click)="SaveAttendanceCorrectionRequest()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Date Correction UserPopUp Start -->

@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<div class="clearfix">
+    <div class="loader" [ngClass]="Loader ? '':'hidden'">
+        <!---->
+        <div class="circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+</div>
+<section class="content-header">
+    <h1>Annual Holidays</h1>
+    <div class="btn-align">
+        <button type="button" class="btn btn-primary" data-toggle="modal" (click)="OpenAnnualHolidayPopUp()">
+            Add Holiday
+        </button>
+    </div>
+</section>
+<div class="content">
+
+    <div class="box">
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover table-black">
+                <tbody>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr *ngFor='let data of AnnualHolidayModel; '>
+                        <td>{{data.Date | date:'dd-MM-yyyy'}}</td>
+                        <td>{{ data.Description | limitTo : 90 }}</td>
+                        <td>{{data.IsActive}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+<div class="modal fade in" [style.display]="showAnnualHolidayModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="PopUp-TopSec" tabindex="-1" role="dialog"
+    [style.display]="showAnnualHolidayModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="CloseAnnualHolidayPopUp()" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Add Annual Holiday</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-sm-3 WFHtextalign v-align">
+                        <label>Date</label>
+                    </div>
+                    <div class="col-sm-9 calenderColor v-align">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Select Date" [(ngModel)]="LeaveDate"
+                                aria-describedby="start-date" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+                                bsDatepicker #dpto5="bsDatepicker">
+                            <span class="input-group-addon" (click)="dpto5.toggle()"><span
+                                    class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label class="spanMargin">Description</label>
+                        <textarea class="form-control" placeholder="Description" [(ngModel)]="description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="Save()">Save</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

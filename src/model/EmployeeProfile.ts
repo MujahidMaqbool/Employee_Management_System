@@ -1,0 +1,32 @@
+﻿export class EmployeeProfile {
+    public EmployeeId: string = "";
+    public EmployeeCode: string = "";
+    public EmployeeName: string = "";
+    public Designation: string = "";
+    public DesignationId: number = 0;
+    public JoiningDate: Date = new Date();
+    public ConfirmationDate: string = "";
+    public Email: string = "";
+    public DateOfBirth: Date = new Date();
+    public PrimaryPhone: string = "";
+    public SecondaryPhone: string = "";
+    public SkypeId: string = "";
+    public ReportTo: string = "";
+    public CurrentCityId: number = 0;
+    public CurrentCountryId: number = 0;
+    public PermanentCityId: number = 0;
+    public PermanentCountryId: number = 0;
+    public City: string = "";
+    public Country: string = "";
+    public RelativeName: string = "";
+    public RelativePhoneNumber: string = "";
+    public ShortName: string = "";
+    public CurrentAddress: string = "";
+    public PermanentAddress: string = "";
+    public EmployeeTeams = new Array();
+    public DeptId: number = 0;
+    public IsActive: boolean = false;
+    public Password: string = "";
+    public RoleId: number = 0;
+    public SerialNumber: string = "";
+}

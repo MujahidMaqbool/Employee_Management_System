@@ -1,0 +1,31 @@
+﻿<h2>Upload Attendance File</h2>
+<div class="fileUpload btn btn-primary">
+    <span>Upload</span>
+    <input type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload" />
+</div>
+
+{{ErrMsg}}
+
+<style>
+    #pgnumber {
+        display: none !important;
+    }
+
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+    }
+
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+</style>  

@@ -1,0 +1,123 @@
+﻿<div class="content-header">
+    <h1>Leave Application
+        <small>(Year: {{FiscalYear}})</small>
+    </h1>
+
+</div>
+<div class="content">
+    <div class="box">
+        <div class="box-header ui-sortable-handle">
+            <h3 class="box-title">Remaining Leaves</h3>
+            <!-- tools box -->
+            <!-- /. tools -->
+        </div>
+        <div class="box-body leaveBoxes">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <td class="userTimeBox" *ngFor='let leave of EmployeeLeaveList; '>{{leave.LeaveType}}:
+                            <span>{{leave.RemainingLeaves}}</span></td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="box box-info" *ngIf="EmployeePendingApplication?.length > 0">
+        <div class="box-header ui-sortable-handle">
+            <h3 class="box-title">Pending Leave Applications</h3>
+        </div>
+        <div class="box-body leaveBoxes">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <td class="userTimeBox" *ngFor='let leaveApplication of EmployeePendingApplication; '>
+                            {{leaveApplication.LeaveType}}: <span>{{leaveApplication.TotalLeaves}}</span></td>
+                    </tr>
+                </thead>
+            </table>
+            <div class="row">
+                <div class="RemaingLeaveContent col-sm-12">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row WFHitemMargin">
+        <div class="col-md-3">
+            <label>Apply for Leave</label>
+            <select class="form-control" (change)="onLeaveChange($event.target.value)">
+                <option value="">Select Leave Type</option>
+                <option *ngFor='let leave of LeaveTypesList; ' value="{{leave.LeaveTypeId}}">{{leave.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-3" *ngIf="leaveTypeId === '7'">
+            <label>Select Leave Type</label>
+            <select id="ddLeaveType" class="form-control" (change)="onChildLeaveChange($event.target.value)">
+                <option value="0">Select Leave Type</option>
+                <option value="1">Casual</option>
+                <option value="3">Sick</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label>From</label>
+            <div class="input-group">
+                <input type="text" class="form-control" aria-describedby="start-date" placeholder="dd-mm-yyyy"
+                    [(ngModel)]="FromDate" (ngModelChange)="onStartDateChange()"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker #dpfrom="bsDatepicker"
+                    placement="bottom left">
+                <!--<div *ngIf="showFromDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                    <datepicker [(ngModel)]="FromDate" [showWeeks]="true" (ngModelChange)="onStartDateChange()" (selectionDone)="showFromDatePicker = false"></datepicker>
+                </div>-->
+                <span class="input-group-addon" (click)="dpfrom.toggle()" [attr.aria-expanded]="dpfrom.isOpen"><span
+                        class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label>Till</label>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="dd-mm-yyyy" aria-describedby="start-date"
+                    [(ngModel)]="ToDate" (ngModelChange)="onEndDateChange()"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker #dpto="bsDatepicker"
+                    placement="bottom left">
+                <!--<div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                    <datepicker [(ngModel)]="ToDate" [showWeeks]="true" (ngModelChange)="onEndDateChange()" (selectionDone)="showToDatePicker = false;"></datepicker>
+                </div>-->
+                <span class="input-group-addon" (click)="dpto.toggle()" [attr.aria-expanded]="dpto.isOpen"><span
+                        class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+    </div>
+    <div class="loader" [ngClass]="Loader ? '':'hidden'">
+        <!---->
+        <div class="circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    <div class="row WFHitemMargin">
+
+        <div class="col-md-12">
+            <label for="comment">User Note</label>
+            <textarea class="form-control" [(ngModel)]="userNote" rows="5" id="comment"></textarea>
+        </div>
+        <div class="col-md-3 WFHitemMarginTop">
+            <label for="LeaveCount">Total Leave Days:</label> <span id="LeaveCount">{{TotalLeaveDays}}</span>
+            <!--<input class="form-control" [(ngModel)]="TotalLeaveDays" id="LeaveCount" readonly />-->
+        </div>
+        <div class="col-md-12 WFHitemMarginTop">
+            <button style="max-width: 200px; width: 100%;float: right;" type="button" (click)="VerifyLeaveApplication()"
+                class="btn btn-block btn-primary">Apply</button>
+        </div>
+    </div>
+
+</div>

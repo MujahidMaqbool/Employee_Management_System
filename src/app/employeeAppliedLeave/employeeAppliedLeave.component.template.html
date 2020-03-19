@@ -1,0 +1,173 @@
+﻿<div class="content-header">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Leave Applications</h1>
+        </div>
+        <div class="col-md-3">
+            <div *ngIf="EmployeeList.length != 1">
+                <select class="form-control" style="margin-bottom: 10px;"
+                    (change)="onEmployeeChange($event.target.value)">
+                    <option value="">Select Employee</option>
+                    <option *ngFor='let employee of EmployeeList; ' value="{{employee.EmployeeCode}}">
+                        {{employee.EmployeeName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control" (change)="onStatusChange($event.target.value)">
+                <option value="">All</option>
+                <option value="Pending">Pending</option>
+                <option value="Approve">Approved</option>
+                <option value="Reject">Rejected</option>
+                <option value="Cancel">Cancelled</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<div class="content">
+    <div class="loader" [ngClass]="Loader ? '':'hidden'">
+        <!---->
+        <div class="circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Leave type</th>
+                        <th>From</th>
+                        <th>Till</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr (click)="SelectedLeave(leave)" data-toggle="modal" data-target="#PopUp-TopSec"
+                        *ngFor='let leave of EmployeeAppliedLeaveList; ' style="cursor: pointer;">
+                        <td>{{leave.EmployeeCode}}</td>
+                        <td>{{leave.EmployeeName}}</td>
+                        <td *ngIf="leave.ChildLeaveType != ''">{{leave.LeaveType}} / {{leave.ChildLeaveType}}</td>
+                        <td *ngIf="leave.ChildLeaveType == ''">{{leave.LeaveType}}</td>
+                        <td>{{leave.FromDateTime | date:'dd-MM-yyyy'}}</td>
+                        <td>{{leave.ToDateTime | date:'dd-MM-yyyy'}}</td>
+                        <td>{{ leave.UserNote | limitTo : 20 }}</td>
+                        <td *ngIf="leave.Status == 'Reject'">Rejected</td>
+                        <td *ngIf="leave.Status == 'Cancel'">Cancelled</td>
+                        <td *ngIf="leave.Status == 'Approve'">Approved</td>
+                        <td *ngIf="leave.Status == 'Pending'">Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal-backdrop fade in" [style.display]="showLeaveModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="PopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="showLeaveModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="leaveApp">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" (click)="CloseLeavePopUp()"
+                        aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Leave Application</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="userInfo">
+                    <div class="userDP">
+                        <img src="{{employeeAppliedLeave.EmployeeImage}}">
+                    </div>
+                    <div class="form-group">
+                        <label>{{employeeAppliedLeave.EmployeeName}}</label>
+                        <p>{{employeeAppliedLeave.EmployeeDesignation}}</p><br>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Leave Type</label>
+                            <div>
+                                <p *ngIf="employeeAppliedLeave.ChildLeaveType != ''">{{employeeAppliedLeave.LeaveType}}
+                                    / {{employeeAppliedLeave.ChildLeaveType}}</p><span
+                                    *ngIf="employeeAppliedLeave.ChildLeaveType == ''">{{employeeAppliedLeave.LeaveType}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Leave Status</label>
+                            <p *ngIf="employeeAppliedLeave.Status == 'Reject'">Rejected</p>
+                            <p *ngIf="employeeAppliedLeave.Status == 'Cancel'">Cancelled</p>
+                            <p *ngIf="employeeAppliedLeave.Status == 'Approve'">Approved</p>
+                            <p *ngIf="employeeAppliedLeave.Status == 'Pending'">Pending</p>
+                        </div>
+                        <!--<div class="col-sm-4 form-group ">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"><label>From</label>
+                            <p>{{employeeAppliedLeave.FromDateTime | date:'dd-MM-yyyy'}}</p>
+                        </div>
+                        <div class="col-md-6"><label>Till</label>
+                            <p>{{employeeAppliedLeave.ToDateTime | date:'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Total Days of Leave</label>
+                            <p>{{employeeAppliedLeave.TotalLeaves}}</p>
+                        </div>
+                        <div class="col-md-6 ">
+
+                        </div>
+                    </div>
+                    <div>
+                        <label>Reason</label>
+                        <p>{{employeeAppliedLeave.UserNote}}</p>
+                    </div>
+                    <div class="form-group">
+                        <div
+                            *ngIf="employeeAppliedLeave.Status != 'Approve' && employeeAppliedLeave.Status != 'Reject' && employeeAppliedLeave.Status != 'Cancel'">
+                            <label>Remarks</label>
+                            <textarea [(ngModel)]="employeeAppliedLeave.ManagerNote"
+                                class="form-control ng-pristine ng-valid ng-touched" rows="5" id="comment"></textarea>
+                        </div>
+                        <div *ngIf="leaveStatus == 'Approve' || leaveStatus == 'Reject' || leaveStatus == 'Cancel'">
+                            <label>Remarks</label>
+                            <textarea [(ngModel)]="managerNote" readonly
+                                class="form-control ng-pristine ng-valid ng-touched" rows="5" id="comment"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="employeeAppliedLeave.Status != 'Approve' && employeeAppliedLeave.Status != 'Reject' && employeeAppliedLeave.Status != 'Cancel'"
+                class="modal-footer">
+                <button type="button" data-dismiss="modal" (click)="ApproveLeave('Reject')"
+                    class="btn btn-danger pull-left">Reject</button>
+                <button type="button" data-dismiss="modal" (click)="ApproveLeave('Approve')"
+                    class="btn btn-primary">Approve</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>

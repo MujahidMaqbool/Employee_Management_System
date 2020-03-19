@@ -1,0 +1,195 @@
+<div *ngIf="IsAuthenticated" class="skin-purple">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top text-center">
+                <ul class="headerClock">
+                    <li class="active">{{currentDate | date:'dd-MM-yyyy'}}</li>
+                    <li class="active">{{currentTime}}</li>
+                </ul>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav top-profile">
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li id="trigger-dropdown" class="dropdown user user-menu userBg dropdown-toggle" type="button"
+                            data-toggle="dropdown">
+                            <a style="cursor: pointer;">
+                                <p class="hidden">{{GetEmployeeImage()}}</p>
+                                <img src="{{ EmployeeImage }}" class="user-image" alt="User Image">
+                                <span class="hidden-xs">{{EmployeeName}}</span>
+                                <span class="pull-right-container">
+                                    <i style="padding: 3px 0 0 10px;" class="fa fa-angle-down pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu profile-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="{{ EmployeeImage }}" class="img-circle" alt="User Image">
+                                    <p>
+                                        {{EmployeeName}}
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a [routerLink]="['/UpdateProfile']" class="btn btn-default">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a (click)="signOut()" class="btn btn-default">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <div class="EMS-Logo text-center">
+                    <a [routerLink]="['/dashboard']" (click)="Active('Dashboard')" class="logo">
+                        <img src="../../assets/Images/EMS-Logo_2x.png" />
+                    </a>
+                </div>
+                <ul class="sidebar-menu">
+                    <li [ngClass]="ActiveLink == 'Dashboard' ? 'treeview active' : 'treeview'">
+                        <a [routerLink]="['/dashboard']" (click)="Active('Dashboard')">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li [ngClass]="ActiveLink == 'ShowAttendanceChild' ? 'treeview active' : 'treeview'">
+                        <a [routerLink]="['/attendance']" (click)="Active('ShowAttendanceChild')">
+                            <i class="fas fa-user"></i>
+                            <span>Attendance</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li *ngIf="ShowMainAttendance">
+                                <a routerLink="/AttendanceAdmin" (click)="ShowAdminAttendance=true">
+                                    <!--<i class="fa fa-circle-o"></i>-->
+                                    <span>Main Attendance</span>
+                                </a>
+                            </li>
+                            <li *ngIf="ShowAppliedAttendanceCorrection">
+                                <a [routerLink]="['/AppliedAttendanceCorrection']"
+                                    (click)="Active('ShowAttendanceChild')">
+                                    <!--<i class="fa fa-circle-o"></i>-->
+                                    <span>Approval</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/MyAttendanceCorrection']" (click)="Active('ShowAttendanceChild')">
+                                    <!--<i class="fa fa-circle-o"></i>-->
+                                    <span>Correction</span>
+                                </a>
+                            </li>
+                            <li *ngIf="ShowEmployees" (click)="Active('ShowAttendanceChild')">
+                                <a [routerLink]="['/pdfReport']">
+                                    <span>PDF Report</span>
+                                </a>
+                            </li>
+                            <li *ngIf="ShowEmployees" (click)="Active('ShowAttendanceChild')">
+                                <a [routerLink]="['/attendanceMonthlyStatus']">
+                                    <span>Monthly Status</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li [ngClass]="ActiveLink == 'ShowLeaveChild' ? 'treeview active' : 'treeview'">
+                        <a [routerLink]="['/Leaves']" (click)="Active('ShowLeaveChild')">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Leaves</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a [routerLink]="['/leaveApplication']" (click)="Active('ShowLeaveChild')">
+                                    <span>Leave application</span>
+                                </a>
+                            </li>
+                            <li *ngIf="ShowLeavesApproval" (click)="Active('ShowLeaveChild')">
+                                <a [routerLink]="['/AppliedLeaves']">
+                                    <span>Approval</span>
+                                </a>
+                            </li>
+                            <li *ngIf="ShowFiscalLeaves" (click)="Active('ShowLeaveChild')">
+                                <a [routerLink]="['/fiscalLeave']">
+                                    <span>Fiscal leaves</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/AppliedLeavesStatus']" (click)="Active('ShowLeaveChild')">
+                                    <span>History</span>
+                                </a>
+                            </li>
+                            <li *ngIf="ShowEmployees">
+                                <a [routerLink]="['/annualHoliday']" (click)="Active('ShowLeaveChild')">
+                                    <span>Anuual Holiday</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li *ngIf="ShowEmployees" [ngClass]="ActiveLink == 'Employee' ? 'treeview active' : 'treeview'">
+                        <a [routerLink]="['/Employees']" (click)="Active('Employee')">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+
+                    <li [ngClass]="ActiveLink == 'ShowWFHChild' ? 'treeview active' : 'treeview'"
+                        *ngIf="ShowWorkFromHomeApproval">
+                        <a routerLink="/AppliedWorkFromHome" (click)="Active('ShowWFHChild')">
+                            <img src="../../assets/Images/WFH-Icon.png" />
+                            <span>WFH approval</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a [routerLink]="['/MyWorkFromHome']" (click)="Active('ShowWFHChild')">
+                                    <span>History</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li *ngIf="!ShowWorkFromHomeApproval"
+                        [ngClass]="ActiveLink == 'WFH' ? 'treeview active' : 'treeview'">
+                        <a [routerLink]="['/MyWorkFromHome']" (click)="Active('WFH')">
+                            <img src="../../assets/Images/WFH-Icon.png" />
+                            <span>Work from home</span>
+                        </a>
+                    </li>
+                    <li [ngClass]="ActiveLink == 'Report' ? 'treeview active' : 'treeview'">
+                        <a [routerLink]="['/Report']" (click)="Active('Report')">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Report</span>
+                        </a>
+                    </li>
+                    <!--<li *ngIf="ShowReimbursement" [ngClass]="ActiveLink == 'Reimbursement' ? 'treeview active' : 'treeview'">
+                            <a [routerLink]="['/Reimbursement']" (click)="Active('Reimbursement')">
+                                <i class="icon-work-from-home ion"></i>
+                                <span>Reimbursement</span>
+                            </a>
+                        </li>-->
+                </ul>
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<!--<div *ngIf="IsAuthenticated && ShowAdminAttendance" class="wrapper skin-purple">
+    <AttendanceAdmin (AttendanceClickEvent)='openAttendanceAdmin($event)'></AttendanceAdmin>
+    <router-outlet></router-outlet>
+</div>-->
+
+<div class="wrapper" *ngIf="IsAuthenticated == false">
+    <login (AutenticatedEvent)='onNotify($event)'></login>
+    <!--<router-outlet></router-outlet>-->
+</div>

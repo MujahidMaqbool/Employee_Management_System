@@ -1,0 +1,119 @@
+﻿<div class="container-fluid">
+    <div class="AttendanceTop clearfix">
+        <div class="col-sm-3 text-left">
+            <div style="margin-top:10px;" class="logo">
+                <a href="#"><img src="../../assets/Images/logo.png" /></a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mainAttendanceHeading">
+                <h1>Employee Management System</h1>
+                <div class="text-xs-center">{{errMsg}}</div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="AttendancePageTiming">
+                <span>{{currentDate}}</span> <span>{{currentTime}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="clearfix" style="padding-top: 115px;">
+    <div *ngFor='let employee of EmployeeStatusList; '>
+        <div class="colCustom">
+
+            <div class="attendanceBoxb-ground" [ngStyle]="{'background-image':'url('+employee.ImageUrl+')'}">
+                <div class="attendancebackgroundText">
+                    <a *ngIf="employee.IsAvaiable==false" class="rejectedStatus"></a>
+                    <a *ngIf="employee.IsAvaiable" class="acceptedStatus"></a>
+                    <h4>{{employee.Name}}</h4>
+                    <label>{{employee.Designation}}</label>
+                </div>
+            </div>
+            <div class="attendancepageBox">
+                <div class="attendancebox-CheckInTime">
+                    <span *ngIf="employee.ShowStatus">{{employee.Status}}</span>
+                    <span *ngIf="employee.ShowStatus==false" innerHTML="{{employee.AttendanceCheckInStatus}}"></span>
+                </div>
+                <div class="attendanceboxButton">
+                    <button type="button" class="statusButton" (click)="EmpPopUpInfo(employee)">Status</button>
+                    <button type="button" class="checkoutButton"
+                        (click)="OpenAttendancePopUp(employee)">{{employee.BottonText}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal-backdrop fade in" [style.display]="showModal ? 'block' : 'none'"></div>
+<div class="modal modalSub" id="PopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="showModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="LeaveApplication-PopUp bounceIn animated">
+            <div class="leaveApp">
+                <div class="appPopHeader">
+                    <h3>Update Status</h3> <span><img (click)="ClosePopUp()" aria-label="Close"
+                            src="../../assets/Images/whiteCross.png"></span>
+                </div>
+            </div>
+            <div class="AppPopUpContent">
+                <div class="userInfo">
+                    <div class="userDP">
+                        <img src="{{employeeImg}}">
+                    </div>
+                    <div class="EmployeeInfo">
+                        <h4>{{employeeName}}</h4>
+                        <label>{{employeeDesg}}</label><br>
+                    </div>
+                </div>
+            </div>
+            <div class="statusPopDropdown">
+                <select [(ngModel)]="selectedStatus" (change)="onChangeStatus()">
+                    <option *ngFor='let status of StatusList; ' [ngValue]="status"
+                        [attr.disabled]="status.IsDisabled?'disabled': null">{{status.Status1}}</option>
+                </select>
+                <select *ngIf="dropdownDisabled" [(ngModel)]="selectedStatusTime" (change)="onChangeStatusTime()">
+                    <option *ngFor='let statustime of StatusTimeList; ' [ngValue]="statustime"
+                        [attr.disabled]="statustime.IsDisabled?'disabled': null">{{statustime.TimeDescription}}</option>
+                </select>
+                <p>{{statusErrorMsg}}</p>
+                <div class="statuspopupButton">
+                    <button type="button" (click)="SaveEmployeeStatus()" class="btn btn-primary">Update</button>
+                    <button type="button" [disabled]="btnDisabled" (click)="ClearEmployeeStatus()"
+                        class="btn btn-primary">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop fade in" [style.display]="SaveShowModal ? 'block' : 'none'"></div>
+<div class="modal modalSub" id="SavePopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="SaveShowModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="LeaveApplication-PopUp bounceIn animated">
+            <div class="leaveApp">
+                <div class="appPopHeader">
+                    <h3>Are you sure you want to CheckIn/CheckOut</h3> <span><img (click)="CloseAttendancePopUp()"
+                            aria-label="Close" src="../../assets/Images/whiteCross.png"></span>
+                </div>
+            </div>
+            <div class="AppPopUpContent">
+                <div class="userInfo">
+                    <div class="userDP">
+                        <img src="{{employeeImg}}">
+                    </div>
+                    <div class="EmployeeInfo">
+                        <h4>{{employeeName}}</h4>
+                        <label>{{employeeDesg}}</label><br>
+                    </div>
+                </div>
+            </div>
+            <div class="statuspopupButton">
+                <button type="button" (click)="SaveEmployeeAttendance(employeeId)" class="btn btn-primary">Yes</button>
+                <button type="button" (click)="CloseAttendancePopUp()" class="btn btn-primary">No</button>
+            </div>
+        </div>
+    </div>
+</div>

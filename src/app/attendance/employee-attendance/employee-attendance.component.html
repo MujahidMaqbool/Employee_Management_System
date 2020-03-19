@@ -1,0 +1,199 @@
+<div class="clearfix">
+  <div class="loader" [ngClass]="Loader ? '':'hidden'">
+    <!---->
+    <div class="circle">
+      <div class="sk-circle1 sk-circle"></div>
+      <div class="sk-circle2 sk-circle"></div>
+      <div class="sk-circle3 sk-circle"></div>
+      <div class="sk-circle4 sk-circle"></div>
+      <div class="sk-circle5 sk-circle"></div>
+      <div class="sk-circle6 sk-circle"></div>
+      <div class="sk-circle7 sk-circle"></div>
+      <div class="sk-circle8 sk-circle"></div>
+      <div class="sk-circle9 sk-circle"></div>
+      <div class="sk-circle10 sk-circle"></div>
+      <div class="sk-circle11 sk-circle"></div>
+      <div class="sk-circle12 sk-circle"></div>
+    </div>
+  </div>
+  <div class="content-header">
+    <h1>Employee Attendance</h1>
+  </div>
+</div>
+<div class="content">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <div class="input-group ">
+        <input type="text" class="form-control" aria-describedby="start-date" [(ngModel)]="FromDate"
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="dd-MM-yyyy" bsDatepicker #dpfrom="bsDatepicker"
+          placement="bottom left">
+        <!--<input type="text" class="form-control" [ngModel]="FromDate | date:'dd-MM-yyyy'" (focus)="showFromDatePicker = true">
+          <div *ngIf="showFromDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+              <datepicker [(ngModel)]="FromDate" [showWeeks]="true" (selectionDone)="showFromDatePicker = false"></datepicker>
+          </div>-->
+        <span class="input-group-addon" (click)="dpfrom.toggle()" [attr.aria-expanded]="dpfrom.isOpen"><span
+            class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+      <div class="input-group ">
+        <input type="text" class="form-control" aria-describedby="start-date" [(ngModel)]="ToDate"
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="dd-MM-yyyy" bsDatepicker #dpfrom2="bsDatepicker"
+          placement="bottom left">
+        <!--<input type="text" class="form-control" [ngModel]="ToDate | date:'dd-MM-yyyy'" (focus)="showToDatePicker = true">
+              <div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                  <datepicker [(ngModel)]="ToDate" (ngModelChange)="onEndDateChange()" [showWeeks]="true" (selectionDone)="showToDatePicker = false;"></datepicker>
+              </div>-->
+        <span class="input-group-addon" (click)="dpfrom2.toggle()" [attr.aria-expanded]="dpfrom2.isOpen"><span
+            class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+    </div>
+    <div class=" col-md-3 form-group">
+      <div *ngIf="EmployeeList.length != 1">
+        <select class="form-control" style="margin-bottom: 10px;" (change)="onEmployeeChange($event.target.value)">
+          <option value="">All</option>
+          <option *ngFor='let employee of EmployeeList; trackBy: index;' value="{{employee.EmployeeCode}}">
+            {{employee.EmployeeName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2 form-group">
+      <button type="button" class="btn btn-block btn-primary" (click)="Search()">Search</button>
+    </div>
+  </div>
+
+
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Details</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Date</th>
+            <!--<th>Planned In</th>
+                       <th>Planned Out</th>-->
+            <th>Time In</th>
+            <th>Time Out</th>
+            <!--<th>Standard</th>-->
+            <th>Total Hours</th>
+            <!--<th>Late In</th>
+                       <th>Late Out</th>
+                       <th>Early In</th>
+                      <th>Early Out</th>-->
+            <th>Remarks</th>
+
+          </tr>
+          <tr *ngFor='let attendance of EmployeeAttendanceList;'>
+            <td>{{attendance.EmployeeCode}}</td>
+            <td>{{attendance.EmployeeName}}</td>
+            <td>{{attendance.Date | date:'dd-MM-yyyy'}}</td>
+            <!--<td>{{attendance.PlannedTimeIn}}</td>
+                       <td>{{attendance.PlannedTimeOut}}</td>-->
+            <td *ngIf="attendance.ActualTimeIn != ''">{{attendance.ActualTimeIn}}</td>
+            <td *ngIf="attendance.ActualTimeIn == ''">-</td>
+            <td *ngIf="attendance.ActualTimeOut != ''">{{attendance.ActualTimeOut}}</td>
+            <td *ngIf="attendance.ActualTimeOut == ''">-</td>
+            <!--<td>{{attendance.StandardHour}}</td>-->
+            <td *ngIf="attendance.ActualHour != ''">{{attendance.ActualHour}}</td>
+            <td *ngIf="attendance.ActualHour == ''">-</td>
+            <!--<td>{{attendance.LateIn}}</td>
+                      <td>{{attendance.LateOut}}</td>
+                      <td>{{attendance.EarlyIn}}</td>
+                      <td>{{attendance.EarlyOut}}</td>-->
+            <td *ngIf="attendance.Remarks != ''">{{ attendance.Remarks | limitTo : 20 }}</td>
+            <td *ngIf="attendance.Remarks == ''">-</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
+</div>
+
+<!-- Date Correction UserPopUp Start -->
+<div class="modal fade in" [style.display]="showAttendanceCorrectionModal ? 'block' : 'none'"></div>
+<div class="modal modalSub" id="PopUp-TopSec" tabindex="-1" role="dialog"
+  [style.display]="showAttendanceCorrectionModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="CloseAttendanceCorrectionPopup()"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Attendance Correction</h4>
+        <!--<span>
+  <img data-dismiss="modal" aria-label="Close" src="../../assets/Images/cross-button.png"></span>-->
+
+      </div>
+
+      <div class="modal-body">
+        <div class="clearfix workfromhomeReasonmargin form-group">
+          <div class="col-sm-3 WFHtextalign v-align">
+            <span>Select Date</span>
+          </div>
+          <div class="col-sm-9 calenderColor v-align">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="dd-mm-yyyy" aria-describedby="start-date"
+                [(ngModel)]="AttendanceCorrectionDate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker
+                #dpto="bsDatepicker">
+              <!--<div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                              <datepicker [(ngModel)]="AttendanceCorrectionDate" (ngModelChange)="onDateChange()" [showWeeks]="true" (selectionDone)="showToDatePicker = false;"></datepicker>
+                          </div>-->
+              <span class="input-group-addon" (click)="dpfrom.toggle()" [attr.aria-expanded]="dpto.isOpen"><span
+                  class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix workfromhomeReasonmargin form-group">
+          <div class="col-sm-3 v-align">
+            <span>Select Status </span>
+          </div>
+          <div class="col-sm-9 v-align">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="ACPopUpSelector v-align">
+                  <select class="form-control select2" (change)="onStatusChange($event.target.value)">
+                    <option value="true">Check In</option>
+                    <option value="false">Check Out</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <span *ngIf="AttendanceTime != ''">Current Time {{AttendanceTime}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3 v-align">
+            <span>Set Time</span>
+          </div>
+          <div class="col-sm-9 v-align">
+            <timepicker [(ngModel)]="CorrectionTime"></timepicker>
+          </div>
+        </div>
+        <div class="clearfix form-group">
+          <div class="col-sm-3">
+            <span>Reason</span>
+          </div>
+          <div class="leaveCorrectionPopUpReason col-sm-9">
+            <textarea [(ngModel)]="AttendanceCorrectionReason"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="SaveAttendanceCorrectionRequest()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Date Correction UserPopUp Start -->

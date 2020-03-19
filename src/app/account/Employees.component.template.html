@@ -1,0 +1,540 @@
+﻿<div class="content-header">
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-7">
+            <h1>Employees</h1>
+            <br />
+        </div>
+        <div class="WFHbutton col-md-2 pull-right col-xs-5">
+            <button type="button" class="btn btn-block btn-primary" (click)="OpenPopUp()">Add Employee</button>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Sort by</label>
+                    <select #SortOptionControl (change)="sortEmployee()" class="form-control">
+                        <option *ngFor="let option of sortOptions" [value]="option.value">{{option.optionName}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label>Order by</label>
+                    <select #OrderBy (change)="sortEmployee()" class="form-control">
+                        <option value="1">Ascending</option>
+                        <option value="0">Descending</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Search by name</label>
+                    <input class="form-control" type="text" placeholder="Search.." [(ngModel)]=SearchString
+                        (keyup)=SearchEmployee()>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!--<input type="checkbox" [(ngModel)]="dateChecked" />-->
+    <!--<div class="marginTop row">
+        <div class="form-group col-sm-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="dd-mm-yyyy" aria-describedby="from-date" [ngModel]="FromDate | date:'dd-MM-yyyy'" (focus)="showFromDatePicker=true">
+                <div *ngIf="showFromDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                    <datepicker [(ngModel)]="FromDate" [showWeeks]="true" (ngModelChange)="onDateChange()" (selectionDone)="showFromDatePicker = false;"></datepicker>
+                </div>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group col-sm-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="dd-mm-yyyy" aria-describedby="to-date" [ngModel]="ToDate | date:'dd-MM-yyyy'" (focus)="showToDatePicker=true">
+                <div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                    <datepicker [(ngModel)]="ToDate" [showWeeks]="true" (ngModelChange)="onDateChange()" (selectionDone)="showToDatePicker = false;"></datepicker>
+                </div>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+            <select class="form-control" (change)="onEmployeeChange($event.target.value)">
+                <option value="" disabled selected>Choose Employee</option>
+                <option value="">Choose Employee</option>
+                <option *ngFor='let emp of Employees; ' value="{{emp.EmployeeId}}">{{emp.EmployeeName}}</option>
+            </select>
+        </div>
+    </div>-->
+
+</div>
+
+<div class="content">
+    <div class="loader" [ngClass]="Loader ? '':'hidden'">
+        <!---->
+        <div class="circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover table-black">
+                <tbody>
+                    <tr>
+                        <th>#</th>
+                        <th>S. No</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Joining Date</th>
+                        <th>Designation</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr class="cursorPointer" *ngFor='let employee of EmployeeModel; let i = index'
+                        [routerLink]="['/UpdateProfile',{EmployeeCode:employee.EmployeeCode,AdminView:employee.AdminView}]">
+                        <th>{{i}}</th>
+                        <td>{{employee.SerialNumber}}</td>
+                        <td>{{employee.EmployeeCode}}</td>
+                        <td>{{employee.EmployeeName}}</td>
+                        <td>{{employee.JoiningDate | date:'dd-MM-yyyy'}}</td>
+                        <td>{{employee.Designation}}</td>
+                        <td>{{employee.PrimaryPhone}}</td>
+                        <td>{{employee.Email}}</td>
+                        <td class="info-box-text" [style.color]="employee.IsActive ===true ? 'green':'red'">
+                            <b>{{employee.IsActive}}</b>
+                        </td>
+                        <!--<td><a ><img style="margin-top: 3px" src="../../assets/Images/right-arrow.png"></a> </td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!--                                                     Add New Employee                                                        -->
+<!-- Modal -->
+<div class="modal-backdrop fade in" [style.display]="showModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="PopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="showModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="ClosePopUp()" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add employee</h4>
+                <!--<h4 style="display:inline">Add Employee</h4> <span>
+                    <img style="display: inline; float: right;" (click)="ClosePopUp()" data-dismiss="modal" aria-label="Close" src="../../assets/Images/whiteCross.png">
+                </span>-->
+            </div>
+            <div *ngIf="succMsg != ''" class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> {{succMsg}}</h4>
+            </div>
+            <div *ngIf="errMsg != ''" class="error-message alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i>{{errMsg}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Team</label>
+                            <input class="form-control" type="text" placeholder="Search Team" [(ngModel)]=searchTeam
+                                (keyup)=FilterTeam()>
+                            <span>{{teamErrMsg}}</span>
+                        </div>
+                        <div class="searchDropDown" *ngIf="filteredTeamList.length > 0">
+                            <ul>
+                                <li *ngFor='let team of filteredTeamList; '>
+                                    <a (click)="SelectedTeam(team)">{{team.TeamName}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Expertise</label>
+                            <select class="form-control select2 select2-hidden-accessible"
+                                [(ngModel)]="selectedDepartment" (change)="onChangeDepartment()">
+                                <option value="0" disabled selected>Choose Expertise</option>
+                                <option *ngFor='let department of departmentList; ' value="{{department.DeptId}}">
+                                    {{department.DeptName}}</option>
+                            </select>
+                            <span>{{departmentErrMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tagsButton">
+                    <button *ngFor='let team of selectedTeamList; ' type="button" class="btn bg-orange btn-labeled">
+                        <span (click)="RemoveTeam(team)" class="btn-label">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </span>{{team.TeamName}}
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Code</label>
+                            <input class="form-control" type="text" [(ngModel)]="employeeCode"
+                                (change)="onChangeCode()">
+                            <span>{{empCodeErrMsg}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" type="text" [(ngModel)]="employeeName"
+                                (change)="onChangeName()">
+                            <span>{{empNameErrMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Short Name</label>
+                            <input class="form-control" type="text" [(ngModel)]="empShortName"
+                                (change)="onChangeCode()">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select class="form-control select2 select2-hidden-accessible"
+                                [(ngModel)]="selectedRoleEmployee" (change)="onChangeRole()">
+                                <option value="0" disabled selected>Choose role</option>
+                                <option *ngFor='let role of employeeRoleList; ' [ngValue]="role.RoleId">
+                                    {{role.Role}}</option>
+                            </select>
+                            <span>{{roleErrMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Skype</label>
+                            <input class="form-control" type="text" [(ngModel)]="skypeId" (focusout)="onChangeSkype()">
+                            <span>{{skypeErrMsg}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Joining Date</label>
+                            <div class="input-group">
+                                <input class="form-control ng-pristine ng-valid ng-touched" type="text"
+                                    [(ngModel)]="joiningDate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+                                    bsDatepicker #dpto3="bsDatepicker" placement="bottom left">
+                                <!--<div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                        <datepicker [(ngModel)]="joiningDate" [showWeeks]="true" (selectionDone)="showToDatePicker = false;"></datepicker>
+                    </div>-->
+                                <span class="input-group-addon" (click)="dpto3.toggle()"
+                                    [attr.aria-expanded]="dpto3.isOpen"><span
+                                        class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Reporting To</label>
+                            <select class="form-control select2 select2-hidden-accessible"
+                                [(ngModel)]="selectedReportEmployee">
+                                <option value="" disabled selected>Choose employee</option>
+                                <option *ngFor='let employee of reportingEmployeeList; ' [ngValue]="employee">
+                                    {{employee.EmployeeName}}</option>
+                            </select>
+                            <span>{{reportToErrMsg}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="text" [(ngModel)]="emailId" (change)="onChangeEmail()">
+                            <span>{{emailErrMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Designation</label>
+                            <select class="form-control select2 select2-hidden-accessible"
+                                [(ngModel)]="selectedDesignation" (change)="onChangeDesignation()">
+                                <option *ngFor='let designation of employeeDesignationList; ' [ngValue]="designation"
+                                    [attr.disabled]="designation.IsDisabled?'disabled': null">
+                                    {{designation.Designation}}</option>
+                            </select>
+                            <span>{{desgErrMsg}}</span>
+                            <span (click)="OpenDesignationPopUp()" class="help-block"
+                                style="cursor: pointer; float:right;">Add designation</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control" type="text" [(ngModel)]="password">
+                            <span>{{pwdErrMsg}}</span>
+                            <span class="help-block" (click)="GeneratePassword()"
+                                style="cursor: pointer; float: right;">Generate password</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Serial Number For Attendance List</label>
+                            <input class="form-control" type="text" [(ngModel)]="serialNumber"
+                                (change)="onChangeSerialNumber()">
+                            <span>{{SNErrMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="SaveNewEmployee()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Designation Modal -->
+
+<div class="modal-backdrop fade in" [style.display]="designationShowModal ? 'block' : 'none'"></div>
+<div class="modal fade in" id="PopUp-TopSec" tabindex="-1" role="dialog" style="display: block"
+    [style.display]="designationShowModal ? 'block' : 'none'" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>
+                    <img style="display: inline; float: right;" (click)="CloseDesignationPopUp()" data-dismiss="modal"
+                        aria-label="Close" src="../../assets/Images/whiteCross.png">
+                </span>
+                <h4 class="modal-title">Add Designation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Designation Name</label>
+                    <input class="form-control" type="text" [(ngModel)]="otherDesignation"
+                        (focus)="onChangeOtherDesignation()">
+                </div>
+                <span>{{otherDesgErrMsg}}</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="SaveDesignation()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-----------------------------------------------------------                  Plesae don't remove this commented code                            ---------------------------------------->
+<!--<div class="clearfix">
+        <div class="content col-md-11 col-sm-12">
+            <div class="clearfix">
+                <div class="col-sm-6">
+                    <h2>Register Employee</h2>
+                </div>
+            </div>
+            <div class="regEmployeePage" clearfix>
+                <div class="uploadImgSec">
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="displayemployeeImg">
+                                <div id="preview" class="employeeImageArea">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="imgUpLoadButton">
+                                <label>Add photo to profile</label>
+                                <button type="button" class="btn btn-lg btn-default" data-toggle="modal" data-target="#cropImageModal"><span class="glyphicon glyphicon-open"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="regEmployeeContent">
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Employee Name</label>
+                                <input type="text" [(ngModel)]="employeeName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Code</label>
+                                <input type="text" [(ngModel)]="employeeCode">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Designation</label>
+                                <input type="text" [(ngModel)]="employeeDesignation">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+
+                            <div class="input-group">
+                                <label>Date of birth</label>
+                                <input type="text" [ngModel]="dateOfBirth | date:'dd-MM-yyyy'" (focus)="showToDatePicker=true">
+                                <div *ngIf="showToDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                                    <datepicker [(ngModel)]="dateOfBirth" [showWeeks]="true" (selectionDone)="showToDatePicker = false;"></datepicker>
+                                </div>
+<img src="../../assets/Images/calendar-Icon.png" />
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Email</label>
+                                <input type="text" [(ngModel)]="email">
+                            </div>
+                            <span>{{emailErrMsg}}</span>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Phone</label>
+                                <input type="text" [(ngModel)]="primaryPhone" (keypress)="isNumber($event)">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Emercency Contact Person</label>
+                                <input type="text" [(ngModel)]="relativeName">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Emercency Phone</label>
+                                <input type="text" [(ngModel)]="relativePhoneNumber" (keypress)="isNumber($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Skype</label>
+                                <input type="text" [(ngModel)]="skypeId">
+                            </div>
+                            <span>{{skypeErrMsg}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <label>Joining Date</label>
+                                <input type="text"  [ngModel]="joiningDate | date:'dd-MM-yyyy'" (focus)="showFromDatePicker=true">
+                                <div *ngIf="showFromDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                                    <datepicker [(ngModel)]="joiningDate" [showWeeks]="true" (selectionDone)="showFromDatePicker = false;"></datepicker>
+                                </div>
+<img src="../../assets/Images/calendar-Icon.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="reportingSec">
+                                <label>Reporting to</label>
+                                <select [(ngModel)]="selectedReportEmployee">
+                                    <option value="" disabled selected>Choose Employee</option>
+                                    <option *ngFor='let employee of reportingEmployeeList; ' [ngValue]="employee">{{employee.EmployeeName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>New password</label>
+                                <input type="password" [(ngModel)]="password">
+                            </div>
+                            <span>{{pwdErrMsg}}</span>
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="reportingSec">
+                                <label>Country</label>
+                                <select [(ngModel)]="selectedCountry">
+                                    <option value="" disabled selected>Choose Country</option>
+                                    <option *ngFor='let country of CountryList; ' [ngValue]="country">{{country.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="reportingSec">
+                                <label>City</label>
+                                <select [(ngModel)]="selectedCity">
+                                    <option value="" disabled selected>Choose City</option>
+                                    <option *ngFor='let city of CityList; ' [ngValue]="city">{{city.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="credentialSec">
+                                <label>Confirm password</label>
+                                <input type="password" [(ngModel)]="confirmPassword">
+                            </div>
+                            <span>{{pwdErrMsg}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="regButton">
+                                <button (click)="SaveRegisteredEmployee()">Registration</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cropImageModal" class="modal fade" role="dialog">
+        <div class="modal-dialog cropModal">
+
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Crop Image</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="imageBox">
+                            <div class="thumbBox"></div>
+                            <div class="spinner" style="display: none">Loading...</div>
+                        </div>
+                        <div class="action">
+                            <input type="file" id="file" style="float:left; width: 250px">
+                            <input type="button" id="btnCrop" value="Crop" data-dismiss="modal" style="float: right">
+                            <input type="button" id="btnZoomIn" value="+" style="float: right">
+                            <input type="button" id="btnZoomOut" value="-" style="float: right">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>-->

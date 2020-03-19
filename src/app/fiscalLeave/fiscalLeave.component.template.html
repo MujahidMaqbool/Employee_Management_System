@@ -1,0 +1,88 @@
+﻿<div class="content-header">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Add Leave</h1>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            <div class="fiscalLeaveimgSec marginTop">
+                <img src="{{employeeImage}}">
+                <h3>{{EmployeeProfile.EmployeeName}}</h3>
+                <div>{{EmployeeProfile.Designation}}</div>
+                <div *ngIf="EmployeeProfile.EmployeeCode != null">Employee Code: {{EmployeeProfile.EmployeeCode}}</div>
+                <div>{{joiningDate}} {{EmployeeProfile.JoiningDate| date: 'dd-MM-yyyy'}}</div>
+                <div>{{confirmationDate}} {{EmployeeProfile.ConfirmationDate| date: 'dd-MM-yyyy'}}</div>
+
+            </div>
+            <div>
+                <p>{{empError}}<p>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+
+            <div class="marginTop">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Employee</label>
+                            <select class="form-control m-b-30"
+                                (change)="onEmployeeChangeFiscalLeaves($event.target.value)">
+                                <option value="">Select Employee</option>
+                                <option *ngFor='let employee of EmployeeList; '
+                                    value="{{employee.EmployeeId}}+{{employee.EmployeeCode}}">
+                                    {{employee.EmployeeName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Fiscal year</label>
+                            <select class="form-control m-b-30" [(ngModel)]="selectedFiscalYear"
+                                (change)="onChangeFiscalYear()">
+                                <option *ngFor='let year of FiscalYearsList; ' value="{{year.FiscalYear}}">
+                                    {{year.FiscalYear}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <form (ngSubmit)="AddFiscalLeaves(addFiscalLeaveForm)" #addFiscalLeaveForm="ngForm">
+                        <div class="col-md-12">
+                            <div class="row">
+
+                                <div class="col-sm-6" *ngFor="let type of LeaveTypesList; let i=index">
+                                    <div class="form-group">
+                                        <label>{{type.Description}}</label>
+                                        <input class="form-control" type="number" name="LeaveType{{type.LeaveTypeId}}"
+                                            #LeaveType{{type.LeaveTypeId}}="ngModel" [(ngModel)]="type.TotalLeaves"
+                                            value="{{type.TotalLeaves}}">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- <div>
+                            <span style="color:red">{{errorTotalLeaves}}</span>
+                        </div> -->
+                            <div class="marginTop m-b-30">
+                                <button type="submit" class="btn btn-primary"
+                                    [disabled]="!addFiscalLeaveForm.form.valid">Add Leave</button>
+                            </div>
+
+                            <br />
+                            <!--<div class="col-md-9"></div>-->
+                            <!--<div class="clearfix">
+                                <div class="marginTop detailInformation col-md-12">
+                <img src="../../assets/Images/info.png" />
+                                    <p>For detail information about Leave types please  <a href="#">Click here</a>  </p>
+                                </div>
+                            </div>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
