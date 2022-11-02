@@ -29,7 +29,7 @@
     "@types/jspdf": "^1.1.31",
     "core-js": "^2.5.4",
     "file-saver": "^2.0.2",
-    "jspdf": "^1.4.1",
+    "jspdf": "^2.5.1",
     "ngx-bootstrap": "^5.3.2",
     "ngx-image-cropper": "^0.2.9",
     "ngx-order-pipe": "^2.0.4",
